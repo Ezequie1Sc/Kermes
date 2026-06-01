@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kermés Rockera 2026</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="assets/lg.png" alt="Logo Fundación" class="logo-img" />
+                <span class="logo-text">Kermés Rockera</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#evento" class="nav-link">Evento</a></li>
+                <li><a href="#comida" class="nav-link">Comida</a></li>
+                <li><a href="#juegos" class="nav-link">Juegos</a></li>
+                <li><a href="#ubicacion" class="nav-link">Ubicación</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Próximo evento · 27 de junio 2026
+            </div>
+            
+            <h1 class="hero-title">
+                Kermés
+                <span class="highlight">Rockera</span>
+                2026
+            </h1>
+            
+            <p class="hero-subtitle">Música, comida y diversión para toda la familia</p>
+
+            <div class="countdown-container">
+                <p class="countdown-title">Tiempo restante para el gran día</p>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <div class="countdown-card">
+                            <span class="countdown-number" id="days">00</span>
+                        </div>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <div class="countdown-card">
+                            <span class="countdown-number" id="hours">00</span>
+                        </div>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <div class="countdown-card">
+                            <span class="countdown-number" id="minutes">00</span>
+                        </div>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <div class="countdown-card">
+                            <span class="countdown-number" id="seconds">00</span>
+                        </div>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <a href="#evento" class="btn-primary">
+                    Conocer más
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+            
+            <div class="hero-organizer">
+                <img src="assets/lg.png" alt="Logo" class="organizer-logo" />
+                <span>Organizada por <strong>Fundación Avanza Amor y Liderazgo Vida</strong></span>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Desplázate</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== INFO STRIP ===== -->
+    <section class="info-strip">
+        <div class="container">
+            <div class="info-strip-content">
+                <div class="info-strip-items">
+                    <div class="info-strip-item">
+                        <div class="info-strip-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="info-strip-text">
+                            <span class="info-strip-label">Fecha</span>
+                            <span class="info-strip-value">27 de junio</span>
+                        </div>
+                    </div>
+                    <div class="info-strip-divider"></div>
+                    <div class="info-strip-item">
+                        <div class="info-strip-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-strip-text">
+                            <span class="info-strip-label">Horario</span>
+                            <span class="info-strip-value">12:00 - 20:00 hrs</span>
+                        </div>
+                    </div>
+                    <div class="info-strip-divider"></div>
+                    <div class="info-strip-item">
+                        <div class="info-strip-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-strip-text">
+                            <span class="info-strip-label">Lugar</span>
+                            <span class="info-strip-value">Av. Romero Rubio #103, Nezahualcóyotl</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#ubicacion" class="btn-primary">
+                    <i class="fas fa-location-dot"></i>
+                    Ver ubicación
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE EL EVENTO ===== -->
+    <section class="section about-section" id="evento">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Sobre el evento</span>
+                <h2 class="section-title">Una experiencia para compartir en familia</h2>
+                <p class="section-description">Prepárate para disfrutar una tarde llena de tradición, convivencia y diversión en un ambiente inspirado en la energía del rock.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Deliciosos antojitos</h3>
+                                <p>Disfruta de la auténtica comida mexicana preparada con amor y tradición.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Juegos y actividades</h3>
+                                <p>Diversión garantizada con juegos para todas las edades.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-heart"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Ambiente seguro</h3>
+                                <p>Espacio familiar con todas las medidas para tu tranquilidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="image-wrapper">
+                        <img src="assets/Kids.jpg" alt="Familia rockera" class="about-image" />
+                        <div class="image-accent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMIDAS ===== -->
+    <section class="section food-section" id="comida">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Menú</span>
+                <h2 class="section-title">Deliciosos antojitos</h2>
+                <p class="section-description">Una selección de platillos que harán de tu visita una experiencia inolvidable</p>
+            </div>
+            
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="food-image-container">
+                        <img src="assets/pozole.jpg" alt="Pozole" class="food-img" />
+                    </div>
+                    <div class="food-info">
+                        <h3>Pozole</h3>
+                        <p>El clásico mexicano que reconforta el alma</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-image-container">
+                        <img src="assets/tacos.jpg" alt="Tacos de canasta" class="food-img" />
+                    </div>
+                    <div class="food-info">
+                        <h3>Tacos de canasta</h3>
+                        <p>Suaves y sabrosos, perfectos para compartir</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-image-container">
+                        <img src="assets/arepas.jpg" alt="Arepas" class="food-img" />
+                    </div>
+                    <div class="food-info">
+                        <h3>Arepas</h3>
+                        <p>Rellenas de queso o carne, una delicia</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-image-container">
+                        <img src="assets/enchiladas.jpg" alt="Enchiladas" class="food-img" />
+                    </div>
+                    <div class="food-info">
+                        <h3>Enchiladas</h3>
+                        <p>Rojas, verdes o de mole, tú eliges</p>
+                    </div>
+                </div>
+                
+                <div class="food-card">
+                    <div class="food-image-container">
+                        <img src="assets/sopes.jpg" alt="Sopes" class="food-img" />
+                    </div>
+                    <div class="food-info">
+                        <h3>Sopes</h3>
+                        <p>Con frijoles y crema, irresistibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JUEGOS (CON IMAGEN NORMAL) ===== -->
+    <section class="section games-section" id="juegos">
+        <div class="container">
+            <div class="games-grid-layout">
+                <div class="games-text">
+                    <div class="section-header section-header-left">
+                        <span class="section-tag">Diversión</span>
+                        <h2 class="section-title">Juegos para todos</h2>
+                        <p class="section-description">Contaremos con una variedad de juegos y actividades recreativas para que todas las edades disfruten al máximo. Ven y diviértete con nosotros en un ambiente lleno de energía y alegría.</p>
+                    </div>
+                </div>
+                <div class="games-image-wrapper">
+                    <img src="assets/juegos.jpg" alt="Juegos y diversión" class="games-image" />
+                    <div class="games-image-accent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FUNDACIÓN ===== -->
+    <section class="section foundation-section">
+        <div class="container">
+            <div class="foundation-card">
+                <div class="foundation-logo-wrapper">
+                    <img src="assets/lg.png" alt="Logo Fundación" class="foundation-logo-img" />
+                </div>
+                <h3>Fundación Avanza Amor y Liderazgo Vida</h3>
+                <p>Comprometida con promover la convivencia, los valores y el desarrollo comunitario mediante actividades que fortalecen la unión familiar y social.</p>
+                <div class="foundation-values">
+                    <span>Amor</span>
+                    <span>Liderazgo</span>
+                    <span>Comunidad</span>
+                    <span>Familia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="section location-section" id="ubicacion">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Ubicación</span>
+                <h2 class="section-title">Te esperamos</h2>
+                <p class="section-description">Encuéntranos fácilmente en el corazón de Ciudad Nezahualcóyotl</p>
+            </div>
+            
+            <div class="location-grid">
+                <div class="location-card">
+                    <div class="location-address">
+                        <div class="address-icon">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="address-details">
+                            <h3>Av. Romero Rubio #103</h3>
+                            <p>Col. Vicente Villada</p>
+                            <p>Ciudad Nezahualcóyotl, Estado de México</p>
+                        </div>
+                    </div>
+                    
+                    <div class="location-schedule">
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <div>
+                                <span class="schedule-label">Fecha</span>
+                                <span class="schedule-value">Sábado 27 de junio, 2026</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="schedule-label">Horario</span>
+                                <span class="schedule-value">12:00 PM - 8:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.google.com/maps" target="_blank" class="btn-primary btn-location">
+                        <i class="fas fa-directions"></i>
+                        Cómo llegar
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="map-wrapper">
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.5!2d-99.0!3d19.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI0JzAwLjAiTiA5OcKwMDAnMDAuMCJX!5e0!3m2!1ses!2smx!4v1675976479798!5m2!1ses!2smx"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section">
+        <div class="cta-background"></div>
+        <div class="cta-overlay"></div>
+        <div class="container cta-content">
+            <h2>¡No te lo pierdas!</h2>
+            <p>Ven con tu familia y amigos a disfrutar de una tarde llena de sabor, diversión y convivencia en un ambiente único.</p>
+            <div class="cta-highlights">
+                <div class="cta-highlight-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Comida deliciosa</span>
+                </div>
+                <div class="cta-highlight-item">
+                    <i class="fas fa-music"></i>
+                    <span>Música en vivo</span>
+                </div>
+                <div class="cta-highlight-item">
+                    <i class="fas fa-smile"></i>
+                    <span>Diversión garantizada</span>
+                </div>
+            </div>
+            <h3 class="cta-message">¡Te esperamos! ❤️</h3>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/lg.png" alt="Logo Fundación" class="footer-logo-img" />
+                        <span>Kermés Rockera 2026</span>
+                    </div>
+                    <p>Organizado por la Fundación Avanza Amor y Liderazgo Vida</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Romero Rubio #103, Col. Vicente Villada</p>
+                    <p><i class="fas fa-city"></i> Ciudad Nezahualcóyotl, Edo. Méx.</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="WhatsApp" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kermés Rockera · Fundación Avanza Amor y Liderazgo Vida · Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Menú móvil
+        const toggle = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.nav-menu');
+        const navbar = document.getElementById('navbar');
+        
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Cuenta regresiva
+        const eventDate = new Date('June 27, 2026 12:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Animaciones de entrada con Intersection Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .cta-highlight-item').forEach(el => {
+            el.classList.add('animate-hidden');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
