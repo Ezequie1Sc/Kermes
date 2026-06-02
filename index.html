@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css" />
@@ -130,7 +130,7 @@
                         </div>
                         <div class="info-strip-text">
                             <span class="info-strip-label">Horario</span>
-                            <span class="info-strip-value">12:00 - 20:00 hrs</span>
+                            <span class="info-strip-value">A partir de las 6:00 PM</span>
                         </div>
                     </div>
                     <div class="info-strip-divider"></div>
@@ -203,6 +203,27 @@
         </div>
     </section>
 
+    <!-- ===== BANNER ROCKERO (NUEVO) ===== -->
+    <section class="rock-banner-section">
+        <div class="container">
+            <div class="rock-banner-wrapper">
+                <div class="rock-banner-image">
+                    <img src="assets/banner.png" alt="Banda rockera" />
+                </div>
+                <div class="rock-banner-overlay">
+                    <div class="rock-banner-content">
+                        <div class="rock-banner-text">
+                            <i class="fas fa-guitar"></i>
+                            <h3>¡VEN CON TU MEJOR LOOK!</h3>
+                            <p>Los disfraces y atuendos rockeros son bienvenidos</p>
+                            <span class="rock-banner-hand"><i class="fas fa-hand-rock"></i> 🤘</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== COMIDAS ===== -->
     <section class="section food-section" id="comida">
         <div class="container">
@@ -215,7 +236,7 @@
             <div class="food-grid">
                 <div class="food-card">
                     <div class="food-image-container">
-                        <img src="assets/pozole.jpg" alt="Pozole" class="food-img" />
+                        <img src="assets/Pozole.jpg" alt="Pozole" class="food-img" />
                     </div>
                     <div class="food-info">
                         <h3>Pozole</h3>
@@ -266,7 +287,7 @@
         </div>
     </section>
 
-    <!-- ===== JUEGOS (CON IMAGEN NORMAL) ===== -->
+    <!-- ===== JUEGOS ===== -->
     <section class="section games-section" id="juegos">
         <div class="container">
             <div class="games-grid-layout">
@@ -338,7 +359,7 @@
                             <i class="fas fa-clock"></i>
                             <div>
                                 <span class="schedule-label">Horario</span>
-                                <span class="schedule-value">12:00 PM - 8:00 PM</span>
+                                <span class="schedule-value">A partir de las 6:00 PM</span>
                             </div>
                         </div>
                     </div>
@@ -371,20 +392,7 @@
         <div class="container cta-content">
             <h2>¡No te lo pierdas!</h2>
             <p>Ven con tu familia y amigos a disfrutar de una tarde llena de sabor, diversión y convivencia en un ambiente único.</p>
-            <div class="cta-highlights">
-                <div class="cta-highlight-item">
-                    <i class="fas fa-utensils"></i>
-                    <span>Comida deliciosa</span>
-                </div>
-                <div class="cta-highlight-item">
-                    <i class="fas fa-music"></i>
-                    <span>Música en vivo</span>
-                </div>
-                <div class="cta-highlight-item">
-                    <i class="fas fa-smile"></i>
-                    <span>Diversión garantizada</span>
-                </div>
-            </div>
+           
             <h3 class="cta-message">¡Te esperamos! ❤️</h3>
         </div>
     </section>
@@ -458,7 +466,7 @@
         });
 
         // Cuenta regresiva
-        const eventDate = new Date('June 27, 2026 12:00:00').getTime();
+        const eventDate = new Date('June 27, 2026 18:00:00').getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
@@ -514,7 +522,7 @@
             });
         }, observerOptions);
         
-        document.querySelectorAll('.food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .cta-highlight-item').forEach(el => {
+        document.querySelectorAll('.food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .rock-banner-wrapper').forEach(el => {
             el.classList.add('animate-hidden');
             observer.observe(el);
         });
