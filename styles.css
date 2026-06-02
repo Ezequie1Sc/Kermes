@@ -292,7 +292,7 @@ a {
     gap: 28px;
 }
 
-/* Etiqueta de próximo evento - restaurada y bonita */
+/* Etiqueta de próximo evento */
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -318,7 +318,7 @@ a {
 .badge-dot {
     width: 7px;
     height: 7px;
-    background: var(--accent-light);
+    background: #22c55e; /* VERDE */
     border-radius: 50%;
     display: inline-block;
     animation: dotPulse 2s ease-in-out infinite;
@@ -1047,15 +1047,15 @@ a {
 }
 
 .foundation-logo-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto 24px;
     background: var(--accent-soft);
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 16px;
     transition: all var(--transition-bounce);
 }
 
@@ -1110,7 +1110,7 @@ a {
     transform: translateY(-2px);
 }
 
-/* ===== UBICACIÓN ===== */
+/* ===== UBICACIÓN (BOTONES CORREGIDOS) ===== */
 .location-section {
     background: var(--bg-primary);
 }
@@ -1246,6 +1246,68 @@ a {
     border: 0;
     filter: sepia(0.1) hue-rotate(240deg) brightness(1.1) saturate(0.8);
     opacity: 0.95;
+}
+
+/* ===== INFO STRIP BOTÓN CORREGIDO ===== */
+.info-strip .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #b794f4;
+    color: #0a0a0b;
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--transition-bounce);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(183, 148, 244, 0.25);
+}
+
+.info-strip .btn-primary:hover {
+    background: #d4c4f7;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(183, 148, 244, 0.4);
+}
+
+.info-strip .btn-primary i {
+    transition: transform var(--transition-bounce);
+}
+
+.info-strip .btn-primary:hover i {
+    transform: translateX(4px);
+}
+
+/* ===== BOTÓN CÓMO LLEGAR CORREGIDO ===== */
+.btn-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #b794f4;
+    color: #0a0a0b;
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--transition-bounce);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(183, 148, 244, 0.25);
+}
+
+.btn-location:hover {
+    background: #d4c4f7;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(183, 148, 244, 0.4);
+}
+
+.btn-location i {
+    transition: transform var(--transition-bounce);
+}
+
+.btn-location:hover i {
+    transform: translateX(4px);
 }
 
 /* ===== CTA FINAL ===== */
@@ -1504,7 +1566,6 @@ a {
     .info-strip .btn-primary {
         width: 100%;
         justify-content: center;
-        max-width: 300px;
     }
 
     .rock-banner-overlay {
@@ -1613,6 +1674,16 @@ a {
     
     .info-strip-item {
         width: 100%;
+    }
+    
+    .info-strip .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-location {
+        width: 100%;
+        justify-content: center;
     }
     
     .section {
