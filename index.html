@@ -20,20 +20,30 @@
         <div class="container nav-container">
             <div class="logo">
                 <img src="assets/lg.png" alt="Logo Fundación" class="logo-img" />
-                <span class="logo-text">Kermés Rockera</span>
+                <span class="logo-text">Liderazgo Vida</span>
             </div>
+            
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+            
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#evento" class="nav-link">Evento</a></li>
                 <li><a href="#comida" class="nav-link">Comida</a></li>
                 <li><a href="#juegos" class="nav-link">Juegos</a></li>
                 <li><a href="#ubicacion" class="nav-link">Ubicación</a></li>
+                <li class="nav-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Av. Romero Rubio #103, Nezahualcóyotl</span>
+                </li>
+                <li class="nav-info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>6:00 PM</span>
+                </li>
             </ul>
-            <div class="nav-toggle" id="mobile-menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </div>
         </div>
     </nav>
 
@@ -44,10 +54,6 @@
         </div>
         
         <div class="container hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Próximo evento · 27 de junio 2026
-            </div>
             
             <h1 class="hero-title">
                 Kermés <span class="highlight">Rockera</span> 2026
@@ -89,8 +95,8 @@
             </div>
             
             <div class="hero-actions">
-                <a href="#evento" class="btn-primary">
-                    Conocer más
+                <a href="#evento" class="btn-hero">
+                    <span>Conocer más</span>
                     <i class="fas fa-arrow-down"></i>
                 </a>
             </div>
@@ -201,13 +207,13 @@
         </div>
     </section>
 
-    <!-- ===== BANNER ROCKERO (ANCHO REDUCIDO) ===== -->
+    <!-- ===== BANNER ROCKERO ===== -->
     <section class="rock-banner-section">
         <div class="container">
             <div class="rock-banner-wrapper">
                 <div class="rock-banner-bg"></div>
                 <div class="rock-banner-image">
-                    <img src="assets/rocking.jpg" alt="Banda rockera" />
+                    <img src="assets/banner.png" alt="Banda rockera" />
                 </div>
                 <div class="rock-banner-overlay">
                     <div class="rock-banner-content">
@@ -324,7 +330,7 @@
         </div>
     </section>
 
-    <!-- ===== UBICACIÓN (MAPA PROFESIONAL) ===== -->
+    <!-- ===== UBICACIÓN ===== -->
     <section class="section location-section" id="ubicacion">
         <div class="container">
             <div class="section-header">
@@ -384,7 +390,7 @@
         </div>
     </section>
 
-    <!-- ===== CTA FINAL (SIN EMOJI, PROFESIONAL) ===== -->
+    <!-- ===== CTA FINAL ===== -->
     <section class="cta-section">
         <div class="cta-background"></div>
         <div class="cta-overlay"></div>
@@ -393,10 +399,17 @@
                 <i class="fas fa-calendar-check"></i>
                 <span>27 de junio · 6:00 PM</span>
             </div>
-            <h2>¡No te lo pierdas!</h2>
-            <p>Ven con tu familia y amigos a disfrutar de una tarde llena de sabor, diversión y convivencia en un ambiente único.</p>
-          
-            <p class="cta-footer">Te esperamos con los brazos abiertos</p>
+            
+            <h2 class="cta-headline">¡No te lo pierdas!</h2>
+            
+            <p class="cta-description">
+                Ven con tu familia y amigos a disfrutar de una tarde llena de sabor, 
+                diversión y convivencia en un ambiente único.
+            </p>
+            
+            <p class="cta-footer">
+                Te esperamos con los brazos abiertos
+            </p>
         </div>
     </section>
 
@@ -407,7 +420,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <img src="assets/lg.png" alt="Logo Fundación" class="footer-logo-img" />
-                        <span>Kermés Rockera 2026</span>
+                        <span>Liderazgo Vida</span>
                     </div>
                     <p>Organizado por la Fundación Avanza Amor y Liderazgo Vida</p>
                 </div>
@@ -421,13 +434,13 @@
                 <div class="footer-social">
                     <h4>Síguenos</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook" class="social-link">
+                        <a href="https://www.facebook.com/liderazgo.vida" target="_blank" aria-label="Facebook" class="social-link">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" aria-label="Instagram" class="social-link">
+                        <a href="https://www.instagram.com/liderazgo_vida_" target="_blank" aria-label="Instagram" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" aria-label="WhatsApp" class="social-link">
+                        <a href="https://wa.me/5215531114539" target="_blank" aria-label="WhatsApp" class="social-link">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
@@ -442,7 +455,7 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // Menú móvil
+        // Menú móvil mejorado
         const toggle = document.getElementById('mobile-menu');
         const menu = document.querySelector('.nav-menu');
         const navbar = document.getElementById('navbar');
@@ -450,12 +463,14 @@
         toggle.addEventListener('click', () => {
             menu.classList.toggle('active');
             toggle.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
         
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
             });
         });
 
