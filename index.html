@@ -69,6 +69,11 @@
             <p class="hero-subtitle">Música, comida y diversión para toda la familia</p>
 
             <div class="countdown-container">
+                <!-- Mensaje cuando el evento comienza -->
+                <div id="event-live-message" class="event-live-message" style="display: none;">
+                    <i class="fas fa-bullhorn"></i> ¡EVENTO EN VIVO!
+                </div>
+                
                 <p class="countdown-title">Tiempo restante para el gran día</p>
                 <div class="countdown-grid">
                     <div class="countdown-item">
@@ -492,16 +497,23 @@
 
         // Cuenta regresiva
         const eventDate = new Date('June 27, 2026 18:00:00').getTime();
+        const liveMessage = document.getElementById('event-live-message');
+        const countdownTitle = document.querySelector('.countdown-title');
         
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate - now;
             
             if (distance < 0) {
+                // El evento ya comenzó
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
+                
+                // Mostrar mensaje de evento en vivo
+                liveMessage.style.display = 'flex';
+                countdownTitle.textContent = '¡El evento ya está aquí!';
                 return;
             }
             
@@ -514,6 +526,10 @@
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            
+            // Ocultar mensaje de evento en vivo si el contador está activo
+            liveMessage.style.display = 'none';
+            countdownTitle.textContent = 'Tiempo restante para el gran día';
         }
         
         updateCountdown();

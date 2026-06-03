@@ -358,32 +358,33 @@ a {
     margin-top: -8px;
 }
 
-/* Countdown */
+/* Countdown - TAMAÑO AUMENTADO */
 .countdown-container {
     animation: fadeInUp 0.8s ease-out 0.3s both;
+    width: 100%;
 }
 
 .countdown-title {
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     color: var(--text-tertiary);
-    margin-bottom: 16px;
-    font-weight: 500;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .countdown-grid {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .countdown-card {
@@ -392,8 +393,8 @@ a {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(183, 148, 244, 0.3);
     border-radius: var(--radius-md);
-    padding: 18px 22px;
-    min-width: 85px;
+    padding: 22px 30px;
+    min-width: 100px;
     transition: all var(--transition-bounce);
     animation: countFloat 4s ease-in-out infinite;
 }
@@ -405,19 +406,19 @@ a {
 
 @keyframes countFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50% { transform: translateY(-8px); }
 }
 
 .countdown-card:hover {
     background: rgba(183, 148, 244, 0.25);
     border-color: rgba(183, 148, 244, 0.5);
     box-shadow: 0 8px 32px rgba(183, 148, 244, 0.3);
-    transform: translateY(-8px) scale(1.05);
+    transform: translateY(-10px) scale(1.05);
 }
 
 .countdown-number {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 3.8rem;
     font-weight: 700;
     color: #b794f4;
     letter-spacing: 0.02em;
@@ -425,20 +426,44 @@ a {
 }
 
 .countdown-label {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--text-tertiary);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .countdown-separator {
     font-family: var(--font-display);
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     font-weight: 700;
     color: #b794f4;
     opacity: 0.4;
-    padding-bottom: 18px;
+    padding-bottom: 24px;
+}
+
+/* Mensaje de evento en vivo */
+.event-live-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #22c55e;
+    text-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+    margin-bottom: 16px;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.event-live-message i {
+    font-size: 2.5rem;
 }
 
 /* Botón Hero - glassmorphism */
@@ -1110,7 +1135,7 @@ a {
     transform: translateY(-2px);
 }
 
-/* ===== UBICACIÓN (BOTONES CORREGIDOS) ===== */
+/* ===== UBICACIÓN ===== */
 .location-section {
     background: var(--bg-primary);
 }
