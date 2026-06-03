@@ -219,23 +219,12 @@
         </div>
     </section>
 
-    <!-- ===== BANNER ROCKERO ===== -->
+    <!-- ===== BANNER ROCKERO RESPONSIVE ===== -->
     <section class="rock-banner-section">
         <div class="container">
             <div class="rock-banner-wrapper">
-                <div class="rock-banner-bg"></div>
                 <div class="rock-banner-image">
-                    <img src="assets/banner.png" alt="Banda rockera" />
-                </div>
-                <div class="rock-banner-overlay">
-                    <div class="rock-banner-content">
-                        <div class="rock-banner-text">
-                            <i class="fas fa-guitar"></i>
-                            <h3>¡VEN CON TU <span class="rock-highlight">MEJOR LOOK</span>!</h3>
-                            <p>Los disfraces y atuendos rockeros son bienvenidos</p>
-                            <span class="rock-banner-hand"><i class="fas fa-hand-rock"></i></span>
-                        </div>
-                    </div>
+                    <img src="assets/banner1.jpg" alt="Banda rockera" />
                 </div>
             </div>
         </div>
@@ -323,7 +312,7 @@
         </div>
     </section>
 
-    <!-- ===== FUNDACIÓN (LOGO MÁS GRANDE) ===== -->
+    <!-- ===== FUNDACIÓN ===== -->
     <section class="section foundation-section">
         <div class="container">
             <div class="foundation-card">
@@ -403,32 +392,30 @@
     </section>
 
     <!-- ===== CTA FINAL ===== -->
-    <!-- ===== CTA FINAL ===== -->
-<section class="cta-section">
-    <div class="cta-background"></div>
-    <div class="cta-overlay"></div>
-    <div class="container cta-content">
-        <div class="cta-badge">
-            <i class="fas fa-calendar-check"></i>
-            <span>27 de junio · 6:00 PM</span>
+    <section class="cta-section">
+        <div class="cta-background"></div>
+        <div class="cta-overlay"></div>
+        <div class="container cta-content">
+            <div class="cta-badge">
+                <i class="fas fa-calendar-check"></i>
+                <span>27 de junio · 6:00 PM</span>
+            </div>
+            
+            <h2 class="cta-headline">¡No te lo pierdas!</h2>
+            
+            <p class="cta-description">
+                Ven con tu familia y amigos a disfrutar de una tarde inolvidable.
+            </p>
+            
+            <a href="#ubicacion" class="btn-cta">
+                <i class="fas fa-location-dot"></i>
+                Quiero asistir
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            
+            <p class="cta-footer">Te esperamos con los brazos abiertos</p>
         </div>
-        
-        <h2 class="cta-headline">¡No te lo pierdas!</h2>
-        
-        <p class="cta-description">
-            Ven con tu familia y amigos a disfrutar de una tarde inolvidable.
-        </p>
-        
-        <!-- Botón rediseñado -->
-        <a href="#ubicacion" class="btn-cta">
-            <i class="fas fa-location-dot"></i>
-            Quiero asistir
-            <i class="fas fa-arrow-right"></i>
-        </a>
-        
-        <p class="cta-footer">Te esperamos con los brazos abiertos</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
@@ -534,7 +521,7 @@
             
             // Ocultar mensaje de evento en vivo si el contador está activo
             liveMessage.style.display = 'none';
-            countdownTitle.textContent = 'Tiempo restante para el gran día';
+            countdownTitle.textContent = 'Empieza en :';
         }
         
         updateCountdown();

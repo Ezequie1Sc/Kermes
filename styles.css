@@ -318,7 +318,7 @@ a {
 .badge-dot {
     width: 7px;
     height: 7px;
-    background: #22c55e; /* VERDE */
+    background: #22c55e;
     border-radius: 50%;
     display: inline-block;
     animation: dotPulse 2s ease-in-out infinite;
@@ -358,7 +358,7 @@ a {
     margin-top: -8px;
 }
 
-/* Countdown - TAMAÑO AUMENTADO */
+/* Countdown */
 .countdown-container {
     animation: fadeInUp 0.8s ease-out 0.3s both;
     width: 100%;
@@ -815,41 +815,27 @@ a {
     border-color: rgba(183, 148, 244, 0.4);
 }
 
-/* ===== BANNER ROCKERO ===== */
+/* ===== BANNER ROCKERO RESPONSIVE ===== */
 .rock-banner-section {
     background: var(--bg-primary);
-    padding: 30px 0;
+    padding: 20px 0;
 }
 
 .rock-banner-wrapper {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-smooth);
-    max-width: 900px;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    min-height: 180px;
-}
-
-.rock-banner-wrapper:hover {
-    transform: scale(1.01);
-    box-shadow: 0 12px 40px var(--accent-glow);
-}
-
-/* Fondo morado detrás de la imagen */
-.rock-banner-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #7c3aed, #6d28d9, #5b21b6);
-    z-index: 0;
 }
 
 .rock-banner-image {
     position: relative;
-    z-index: 1;
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
 }
 
 .rock-banner-image img {
@@ -857,67 +843,6 @@ a {
     height: auto;
     display: block;
     object-fit: cover;
-    min-height: 160px;
-    mix-blend-mode: normal;
-}
-
-/* Overlay con gradiente para legibilidad */
-.rock-banner-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: linear-gradient(
-        90deg,
-        rgba(10,10,11,0.7) 0%,
-        rgba(10,10,11,0.4) 40%,
-        rgba(10,10,11,0.2) 70%,
-        rgba(10,10,11,0.5) 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 24px;
-}
-
-.rock-banner-content {
-    max-width: 400px;
-}
-
-.rock-banner-text {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
-
-.rock-banner-text i {
-    font-size: 1.6rem;
-    color: #b794f4;
-    margin-bottom: 2px;
-}
-
-.rock-banner-text h3 {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-    letter-spacing: -0.02em;
-}
-
-.rock-highlight {
-    color: #b794f4;
-    text-shadow: 0 0 30px rgba(183, 148, 244, 0.4);
-}
-
-.rock-banner-text p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 400;
-}
-
-.rock-banner-hand {
-    margin-top: 2px;
-    font-size: 1rem;
-    color: #b794f4;
 }
 
 /* ===== FOOD ===== */
@@ -1459,33 +1384,6 @@ a {
     letter-spacing: 0.02em;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .cta-section {
-        padding: 60px 0;
-    }
-    
-    .cta-headline {
-        font-size: 2rem;
-    }
-    
-    .cta-description {
-        font-size: 0.95rem;
-    }
-    
-    .btn-cta {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 28px;
-        font-size: 0.9rem;
-    }
-}
-
-
-
-
-
-
 /* ===== FOOTER ===== */
 .footer {
     background: var(--bg-primary);
@@ -1819,37 +1717,6 @@ a {
     .cta-footer {
         font-size: 1rem;
     }
-
-    .rock-banner-wrapper {
-        min-height: 150px;
-        border-radius: var(--radius-md);
-    }
-    
-    .rock-banner-overlay {
-        padding: 14px;
-        background: linear-gradient(
-            180deg,
-            rgba(10,10,11,0.75) 0%,
-            rgba(10,10,11,0.5) 50%,
-            rgba(10,10,11,0.3) 100%
-        );
-    }
-    
-    .rock-banner-text h3 {
-        font-size: 1rem;
-    }
-    
-    .rock-banner-text p {
-        font-size: 0.75rem;
-    }
-    
-    .rock-banner-text i {
-        font-size: 1.1rem;
-    }
-    
-    .rock-banner-hand {
-        font-size: 0.8rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1894,33 +1761,5 @@ a {
     
     .foundation-card {
         padding: 32px 24px;
-    }
-
-    .rock-banner-wrapper {
-        min-height: 120px;
-    }
-    
-    .rock-banner-overlay {
-        padding: 10px;
-    }
-    
-    .rock-banner-text h3 {
-        font-size: 0.85rem;
-    }
-    
-    .rock-banner-text p {
-        font-size: 0.65rem;
-    }
-    
-    .rock-banner-text i {
-        font-size: 0.9rem;
-    }
-    
-    .cta-headline {
-        font-size: 1.8rem;
-    }
-    
-    .cta-description {
-        font-size: 0.9rem;
     }
 }
