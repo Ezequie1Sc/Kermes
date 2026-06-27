@@ -2,6 +2,7 @@
 
 <p align="center">
   <img src="assets/img.png" alt="Kermés Rockera 2026" width="900">
+  <img src="assets/granday.png" alt="Kermés Rockera 2026" width="900">
 </p>
 
 <p align="center">
