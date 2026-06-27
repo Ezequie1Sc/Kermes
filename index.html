@@ -5,16 +5,575 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kermés Rockera 2026</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Google Fonts (Las mismas que usa tu web) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css" />
+    
+    <style>
+        /* ===== HERO ROCKERO - EDICIÓN GRAN DÍA ===== */
+        :root {
+            --rock-yellow: #a855f7;
+            --rock-yellow-dark: #6d28d9;
+            --rock-black: #060606;
+            --rock-panel: #0b0b0b;
+            --rock-white: #f7f3e8;
+            --rock-muted: #c9c2b3;
+            --rock-border: #8b5cf6;
+            --rock-red: #4c1d95;
+        }
+
+        .hero {
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 88px;
+            padding-bottom: 32px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 12%, rgba(168, 85, 247, 0.18), transparent 26%),
+                radial-gradient(circle at 16% 44%, rgba(76, 29, 149, 0.20), transparent 24%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.74) 55%, rgba(0, 0, 0, 0.94) 100%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.18;
+            background-image:
+                linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(circle at center, #000 0%, transparent 72%);
+        }
+
+        .hero-background,
+        .hero-overlay {
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: min(100%, 920px);
+            max-width: 920px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transform: scale(0.92);
+            transform-origin: center center;
+        }
+
+        .hero-title,
+        .hero-subtitle {
+            display: none;
+        }
+
+        /* ===== CONFETI ROCKERO SVG ===== */
+        .confetti-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            animation: confettiFall linear forwards;
+            filter: drop-shadow(0 0 6px currentColor);
+        }
+
+        .confetti-piece svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            fill: currentColor;
+        }
+
+        .confetti-piece.star,
+        .confetti-piece.spark,
+        .confetti-piece.square {
+            color: var(--rock-yellow);
+        }
+
+        .confetti-piece.diamond {
+            color: var(--rock-white);
+        }
+
+        .confetti-piece.circle {
+            color: var(--rock-red);
+        }
+
+        .confetti-piece.triangle {
+            color: #3b3b3b;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 0;
+                transform: translateY(-12vh) rotate(0deg) scale(0.45);
+            }
+            12% {
+                opacity: 0.95;
+            }
+            82% {
+                opacity: 0.85;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(760deg) scale(0.25);
+            }
+        }
+
+        /* ===== GRAN DÍA CARD ===== */
+        .today-banner {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: min(100%, 780px);
+            margin: 0 auto 1.8rem;
+            padding: 2rem 2.2rem 1.55rem;
+            text-align: center;
+            border: 1px solid var(--rock-border);
+            border-radius: 30px;
+            background:
+                linear-gradient(180deg, rgba(18, 18, 18, 0.88), rgba(5, 5, 5, 0.94)),
+                repeating-linear-gradient(-12deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 7px);
+            box-shadow:
+                0 26px 80px rgba(0, 0, 0, 0.86),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 0 0 8px rgba(0, 0, 0, 0.16);
+            animation: heroDrop 0.75s cubic-bezier(.22,.9,.28,1) both;
+        }
+
+        .today-banner::before {
+            content: "27 DE JUNIO";
+            position: absolute;
+            top: -26px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            min-width: 250px;
+            padding: 0.48rem 1.6rem 0.52rem;
+            background: var(--rock-yellow);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 0.22rem;
+            text-transform: uppercase;
+            clip-path: polygon(0 18%, 7% 0, 92% 7%, 100% 0, 96% 82%, 88% 100%, 10% 92%, 0 100%);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+        }
+
+        .today-banner::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border-radius: 22px;
+            border: 1px solid rgba(168, 85, 247, 0.28);
+            pointer-events: none;
+        }
+
+        .today-small {
+            display: none;
+        }
+
+        /* ===== CAMBIO DE FUENTE A SPACE GROTESK (Como el resto de la web) ===== */
+        .today-title {
+            position: relative;
+            margin: 0;
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: clamp(4.5rem, 9vw, 7.5rem);
+            font-weight: 900;
+            line-height: 0.82;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--rock-yellow);
+            text-shadow:
+                0 4px 0 #4c1d95,
+                0 10px 30px rgba(0, 0, 0, 0.9);
+        }
+
+        .today-title .title-top {
+            display: block;
+            color: var(--rock-white);
+            font-size: 0.45em;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.05em;
+        }
+
+        .today-title .title-main {
+            display: block;
+        }
+
+        .today-text {
+            max-width: 650px;
+            margin: 1.15rem auto 0;
+            color: var(--rock-white);
+            font-size: clamp(1rem, 2.1vw, 1.35rem);
+            line-height: 1.35;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .today-text strong {
+            color: var(--rock-yellow);
+            font-weight: 900;
+        }
+
+        .rock-mark {
+            position: absolute;
+            right: 2.2rem;
+            top: 2.3rem;
+            width: 58px;
+            height: 58px;
+            color: rgba(233, 213, 255, 0.78);
+            transform: rotate(8deg);
+        }
+
+        .rock-bolt {
+            position: absolute;
+            width: 46px;
+            color: var(--rock-yellow);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,.6));
+        }
+
+        .rock-bolt.left {
+            left: -22px;
+            bottom: 48px;
+            transform: rotate(-12deg);
+        }
+
+        .rock-bolt.right {
+            right: -18px;
+            top: 54px;
+            transform: rotate(15deg) scaleX(-1);
+        }
+
+        @keyframes heroDrop {
+            from {
+                opacity: 0;
+                transform: translateY(28px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== COUNTDOWN ROCKERO ===== */
+        .countdown-container {
+            margin-top: 0;
+            width: min(100%, 790px);
+        }
+
+        .countdown-title {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.1rem;
+            color: var(--rock-white);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1rem, 1.7vw, 1.25rem);
+            font-weight: 900;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
+        }
+
+        .countdown-title::before,
+        .countdown-title::after {
+            content: "";
+            width: 48px;
+            height: 3px;
+            background: var(--rock-yellow);
+            clip-path: polygon(0 0, 100% 0, 86% 100%, 12% 100%);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(112px, 1fr));
+            gap: 1.25rem;
+            align-items: start;
+        }
+
+        .countdown-separator {
+            display: none;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-card {
+            width: 100%;
+            min-width: 0;
+            padding: 1.15rem 1rem 0.85rem;
+            border: 1px solid rgba(168, 85, 247, 0.74);
+            border-radius: 18px;
+            background:
+                linear-gradient(180deg, rgba(12, 12, 12, 0.86), rgba(4, 4, 4, 0.94)),
+                repeating-linear-gradient(8deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 8px);
+            box-shadow:
+                0 18px 42px rgba(0, 0, 0, 0.68),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown-number {
+            display: block;
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: clamp(3.1rem, 5.2vw, 5.2rem);
+            font-weight: 900;
+            line-height: 0.86;
+            letter-spacing: -0.06em;
+            color: var(--rock-white);
+            text-shadow: 0 3px 0 rgba(0,0,0,.8);
+        }
+
+        .countdown-label {
+            position: relative;
+            margin-top: 0.7rem;
+            color: var(--rock-white);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.12rem;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .countdown-label::after {
+            content: "";
+            display: block;
+            width: 44px;
+            height: 4px;
+            margin: 0.38rem auto 0;
+            background: var(--rock-yellow);
+            clip-path: polygon(0 50%, 14% 0, 100% 0, 86% 100%, 0 100%);
+        }
+
+        .event-live-message {
+            border: 1px solid var(--rock-yellow);
+            background: #0b0b0b;
+            color: var(--rock-yellow);
+            box-shadow: 0 20px 55px rgba(0,0,0,.65);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ===== BOTÓN HERO ===== */
+        .hero-actions {
+            margin-top: 1.9rem;
+        }
+
+        .btn-hero {
+            border: none;
+            border-radius: 0;
+            padding: 0.95rem 2.65rem;
+            background: var(--rock-yellow);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.08rem;
+            font-weight: 900;
+            letter-spacing: 0.04rem;
+            text-transform: uppercase;
+            clip-path: polygon(4% 0, 96% 4%, 100% 50%, 96% 96%, 3% 100%, 0 48%);
+            box-shadow: 0 20px 45px rgba(0,0,0,.6);
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px) rotate(-1deg);
+            background: #c084fc;
+        }
+
+        .hero-organizer {
+            margin-top: 1.4rem;
+            color: var(--rock-white);
+            opacity: 0.9;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .organizer-logo {
+            border: 1px solid var(--rock-yellow);
+            border-radius: 50%;
+            background: #090909;
+        }
+
+        .scroll-indicator {
+            z-index: 3;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ===== AJUSTE MORADO / NEGRO ===== */
+        .today-banner {
+            background:
+                linear-gradient(180deg, rgba(18, 12, 28, 0.90), rgba(5, 5, 8, 0.96)),
+                repeating-linear-gradient(-12deg, rgba(233,213,255,0.035) 0 1px, transparent 1px 7px);
+            box-shadow:
+                0 28px 82px rgba(0, 0, 0, 0.88),
+                0 0 42px rgba(168, 85, 247, 0.22),
+                inset 0 1px 0 rgba(233, 213, 255, 0.10);
+        }
+
+        .today-banner::before {
+            background: linear-gradient(90deg, #6d28d9, #a855f7, #c084fc);
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,.65);
+        }
+
+        .today-title {
+            color: #c084fc;
+            text-shadow:
+                0 4px 0 #4c1d95,
+                0 12px 34px rgba(0, 0, 0, 0.85),
+                0 0 34px rgba(168, 85, 247, 0.35);
+        }
+
+        .today-title .title-top {
+            color: #f5f3ff;
+        }
+
+        .today-text strong,
+        .countdown-title,
+        .countdown-number {
+            color: #e9d5ff;
+        }
+
+        .btn-hero {
+            background: linear-gradient(90deg, #7c3aed, #a855f7, #c084fc);
+            color: #ffffff;
+        }
+
+        .btn-hero:hover {
+            background: linear-gradient(90deg, #6d28d9, #9333ea, #a855f7);
+        }
+
+        @media (max-width: 900px) {
+            .hero-content {
+                transform: scale(0.96);
+                width: min(100%, 760px);
+            }
+
+            .today-banner {
+                width: min(100%, 700px);
+            }
+
+            .countdown-grid {
+                gap: 0.85rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 92px;
+                padding-bottom: 38px;
+            }
+
+            .hero-content {
+                transform: none;
+                width: 100%;
+            }
+
+            .today-banner {
+                width: min(100%, 94vw);
+                padding: 1.85rem 1.1rem 1.25rem;
+                border-radius: 24px;
+            }
+
+            .today-banner::before {
+                min-width: 205px;
+                font-size: 0.85rem;
+                letter-spacing: 0.15rem;
+                top: -22px;
+            }
+
+            .today-title {
+                font-size: clamp(3rem, 15vw, 4.5rem);
+            }
+
+            .today-text {
+                font-size: 0.98rem;
+            }
+
+            .rock-mark {
+                display: none;
+            }
+
+            .rock-bolt {
+                width: 34px;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, minmax(120px, 1fr));
+                gap: 0.9rem;
+                width: min(100%, 330px);
+                margin: 0 auto;
+            }
+
+            .countdown-number {
+                font-size: 3.2rem;
+            }
+
+            .countdown-title {
+                font-size: 0.9rem;
+                letter-spacing: 0.12rem;
+            }
+
+            .countdown-title::before,
+            .countdown-title::after {
+                width: 26px;
+            }
+
+            .btn-hero {
+                padding: 0.88rem 2rem;
+                font-size: 0.96rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .countdown-grid {
+                width: min(100%, 300px);
+            }
+
+            .countdown-number {
+                font-size: 2.8rem;
+            }
+
+            .today-title {
+                font-size: clamp(2.5rem, 14vw, 3.5rem);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- ===== CONFETI ROCKERO (Fuegos artificiales) ===== -->
+    <div id="confetti-container" class="confetti-container"></div>
+    
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
@@ -56,17 +615,35 @@
         </div>
         
         <div class="container hero-content">
-            <!-- Etiqueta de próximo evento -->
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Próximo evento · 27 de junio 2026
+            
+            <!-- ===== BANNER "ES EL GRAN DÍA" ===== -->
+            <div id="today-banner" class="today-banner" style="display: none;">
+                <span class="today-small">27 DE JUNIO</span>
+
+                <svg class="rock-bolt left" viewBox="0 0 64 64" aria-hidden="true">
+                    <path fill="currentColor" d="M37 2 9 36h18l-5 26 33-40H36L37 2Z"/>
+                </svg>
+
+                <svg class="rock-bolt right" viewBox="0 0 64 64" aria-hidden="true">
+                    <path fill="currentColor" d="M37 2 9 36h18l-5 26 33-40H36L37 2Z"/>
+                </svg>
+
+                <svg class="rock-mark" viewBox="0 0 64 64" aria-hidden="true">
+                    <path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M18 42V20c0-3 2-5 5-5s5 2 5 5v15"/>
+                    <path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M28 35V17c0-3 2-5 5-5s5 2 5 5v21"/>
+                    <path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M38 38V24c0-3 2-5 5-5s5 2 5 5v20c0 9-7 16-16 16h-2c-8 0-14-5-17-12l-5-13c-1-3 0-6 3-7s6 0 7 3l4 9"/>
+                </svg>
+
+                <h2 class="today-title">
+                    <span class="title-top">Es el</span>
+                    <span class="title-main">Gran Día</span>
+                </h2>
+
+                <p class="today-text">
+                    La Kermés Rockera está por iniciar. Te esperamos a partir de las <strong>6:00 PM.</strong>
+                </p>
             </div>
-            
-            <h1 class="hero-title">
-                Kermés <span class="highlight">Rockera</span> 2026
-            </h1>
-            
-            <p class="hero-subtitle">Música, comida y diversión para toda la familia</p>
+            <!-- ===== FIN BANNER ===== -->
 
             <div class="countdown-container">
                 <!-- Mensaje cuando el evento comienza -->
@@ -74,7 +651,7 @@
                     <i class="fas fa-bullhorn"></i> ¡EVENTO EN VIVO!
                 </div>
                 
-                <p class="countdown-title">Empieza en :</p>
+                <p class="countdown-title">Faltan solamente:</p>
                 <div class="countdown-grid">
                     <div class="countdown-item">
                         <div class="countdown-card">
@@ -82,21 +659,18 @@
                         </div>
                         <span class="countdown-label">Días</span>
                     </div>
-                    <div class="countdown-separator">:</div>
                     <div class="countdown-item">
                         <div class="countdown-card">
                             <span class="countdown-number" id="hours">00</span>
                         </div>
                         <span class="countdown-label">Horas</span>
                     </div>
-                    <div class="countdown-separator">:</div>
                     <div class="countdown-item">
                         <div class="countdown-card">
                             <span class="countdown-number" id="minutes">00</span>
                         </div>
                         <span class="countdown-label">Minutos</span>
                     </div>
-                    <div class="countdown-separator">:</div>
                     <div class="countdown-item">
                         <div class="countdown-card">
                             <span class="countdown-number" id="seconds">00</span>
@@ -459,7 +1033,65 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // Menú móvil mejorado
+        // ===== CONFETI ROCKERO (Fuegos artificiales con SVG) =====
+        function createRockConfetti() {
+            const container = document.getElementById('confetti-container');
+            const shapes = ['star', 'spark', 'diamond', 'circle', 'triangle', 'square'];
+            
+            // SVG para cada forma
+            const svgShapes = {
+                star: `<svg viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/></svg>`,
+                spark: `<svg viewBox="0 0 24 24"><path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/></svg>`,
+                diamond: `<svg viewBox="0 0 24 24"><path d="M12 2L2 12L12 22L22 12L12 2Z"/></svg>`,
+                circle: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>`,
+                triangle: `<svg viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22"/></svg>`,
+                square: `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>`
+            };
+            
+            // Colores rockeros (sin RGB)
+            const colors = ['#a855f7', '#c084fc', '#e9d5ff', '#ffffff', '#6d28d9', '#111111'];
+            
+            for (let i = 0; i < 120; i++) {
+                const piece = document.createElement('div');
+                piece.className = `confetti-piece ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+                
+                // Posición aleatoria
+                const left = Math.random() * 100;
+                const delay = Math.random() * 8;
+                const duration = 3 + Math.random() * 4;
+                const size = 10 + Math.random() * 16;
+                
+                piece.style.left = left + '%';
+                piece.style.animationDelay = delay + 's';
+                piece.style.animationDuration = duration + 's';
+                piece.style.width = size + 'px';
+                piece.style.height = size + 'px';
+                
+                // Color aleatorio
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.fill = color;
+                
+                // SVG correspondiente
+                const shapeKey = piece.className.replace('confetti-piece ', '');
+                const svgContent = svgShapes[shapeKey] || svgShapes.star;
+                piece.innerHTML = svgContent;
+                
+                // Rotación inicial
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                container.appendChild(piece);
+            }
+        }
+        
+        // Ejecutar confeti solo si es el día del evento
+        const today = new Date();
+        const isEventDay = today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 27;
+        
+        if (isEventDay) {
+            setTimeout(createRockConfetti, 500);
+        }
+
+        // ===== MENÚ MÓVIL =====
         const toggle = document.getElementById('mobile-menu');
         const menu = document.querySelector('.nav-menu');
         const navbar = document.getElementById('navbar');
@@ -478,7 +1110,7 @@
             });
         });
 
-        // Navbar scroll effect
+        // ===== NAVBAR SCROLL =====
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -487,14 +1119,30 @@
             }
         });
 
-        // Cuenta regresiva
+        // ===== CUENTA REGRESIVA =====
         const eventDate = new Date('June 27, 2026 18:00:00').getTime();
         const liveMessage = document.getElementById('event-live-message');
         const countdownTitle = document.querySelector('.countdown-title');
+        const todayBanner = document.getElementById('today-banner');
         
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate - now;
+            
+            // Verificar si es el día del evento
+            const nowDate = new Date();
+            const isToday =
+                nowDate.getFullYear() === 2026 &&
+                nowDate.getMonth() === 5 && // Junio (0 = enero)
+                nowDate.getDate() === 27;
+            
+            todayBanner.style.display = isToday ? 'flex' : 'none';
+            
+            if (isToday) {
+                countdownTitle.textContent = 'Faltan solamente:';
+            } else {
+                countdownTitle.textContent = 'Faltan solamente:';
+            }
             
             if (distance < 0) {
                 // El evento ya comenzó
@@ -521,13 +1169,12 @@
             
             // Ocultar mensaje de evento en vivo si el contador está activo
             liveMessage.style.display = 'none';
-            countdownTitle.textContent = 'Empieza en :';
         }
         
         updateCountdown();
         setInterval(updateCountdown, 1000);
         
-        // Smooth scroll
+        // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -541,7 +1188,7 @@
             });
         });
         
-        // Animaciones de entrada con Intersection Observer
+        // ===== ANIMACIONES DE ENTRADA =====
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -30px 0px'
