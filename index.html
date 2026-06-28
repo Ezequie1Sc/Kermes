@@ -821,60 +821,40 @@
             observer.observe(el);
         });
 
-        // ===== CARRUSEL 3D STACK (INTERCAMBIO Y BLOQUEO) =====
+        // ===== CARRUSEL 3D STACK =====
         const videoItems = document.querySelectorAll('.video-stack-item');
         const videoElements = document.querySelectorAll('.video-stack-item video');
         const prevBtn = document.getElementById('videoPrevBtn');
         const nextBtn = document.getElementById('videoNextBtn');
         
-        // Array para guardar el orden de los elementos (IDs de los videos)
-        let videoOrder = [0, 1, 2]; // 0: Izquierda, 1: Centro, 2: Derecha
+        let videoOrder = [0, 1, 2];
 
         function updateCarousel() {
             videoItems.forEach((item, index) => {
-                // Asignamos el índice según el orden actual
                 const newIndex = videoOrder[index];
                 item.setAttribute('data-index', newIndex);
             });
         }
 
-        // Función para rotar a la derecha (El centro va a la derecha, la izquierda al centro...)
         function nextVideo() {
-            // Pausar todos los videos antes de mover
-            videoElements.forEach(v => {
-                v.pause();
-                v.currentTime = 0;
-            });
-
-            // Rotar el array: [2, 0, 1] -> El último pasa al primero
+            videoElements.forEach(v => { v.pause(); v.currentTime = 0; });
             videoOrder.unshift(videoOrder.pop());
             updateCarousel();
         }
 
-        // Función para rotar a la izquierda (El centro va a la izquierda, la derecha al centro...)
         function prevVideo() {
-            // Pausar todos los videos antes de mover
-            videoElements.forEach(v => {
-                v.pause();
-                v.currentTime = 0;
-            });
-
-            // Rotar el array: [1, 2, 0] -> El primero pasa al último
+            videoElements.forEach(v => { v.pause(); v.currentTime = 0; });
             videoOrder.push(videoOrder.shift());
             updateCarousel();
         }
 
-        // Event Listeners para los botones
         nextBtn.addEventListener('click', nextVideo);
         prevBtn.addEventListener('click', prevVideo);
-
-        // Inicializar el carrusel con el orden base
         updateCarousel();
 
-        // ===== LÓGICA DE BLOQUEO DE REPRODUCCIÓN =====
+        // ===== LÓGICA DE BLOQUEO DE REPRODUCCIÓN (ACTUALIZADA) =====
         videoElements.forEach(video => {
-            video.addEventListener('play', function() {
-                // Si este video se reproduce, pausar y reiniciar todos los demás
+            video.addEventListener('play', function () {
                 videoElements.forEach(otherVideo => {
                     if (otherVideo !== video) {
                         otherVideo.pause();
@@ -882,9 +862,25 @@
                     }
                 });
             });
+
+            video.addEventListener('fullscreenchange', function () {
+                videoElements.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+
+            video.addEventListener('webkitfullscreenchange', function () {
+                videoElements.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
         });
 
-        // ===== LIGHTBOX (Funcional para todo el carrusel de fotos) =====
+        // ===== LIGHTBOX =====
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -893,7 +889,6 @@
         const lightboxNext = document.getElementById('lightbox-next');
         let lightboxIndex = 0;
         
-        // Recopilamos todas las imágenes del carrusel de fotos
         const carouselPhotos = document.querySelectorAll('.carousel-track-horizontal img');
         const allPhotos = [...carouselPhotos];
         const totalPhotos = allPhotos.length;
@@ -937,7 +932,6 @@
             lightboxCaption.textContent = data.alt;
         }
         
-        // Event listeners para las fotos del carrusel
         allPhotos.forEach((photo, index) => {
             photo.addEventListener('click', () => openLightbox(index));
         });
