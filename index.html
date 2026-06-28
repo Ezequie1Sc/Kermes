@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="gallery.css" />
 </head>
 <body>
-    <!-- ===== CONFETI ROCKERO (Fuegos artificiales) ===== -->
+    <!-- ===== CONFETI ROCKERO ===== -->
     <div id="confetti-container" class="confetti-container"></div>
     
     <!-- ===== NAVBAR ===== -->
@@ -70,8 +70,8 @@
         
         <div class="container hero-content">
             
-            <!-- ===== BANNER "ES EL GRAN DÍA" ===== -->
-            <div id="today-banner" class="today-banner" style="display: none;">
+            <!-- ===== BANNER PRINCIPAL ===== -->
+            <div id="today-banner" class="today-banner">
                 <span class="today-small">27 DE JUNIO</span>
 
                 <svg class="rock-bolt left" viewBox="0 0 64 64" aria-hidden="true">
@@ -89,8 +89,8 @@
                 </svg>
 
                 <h2 class="today-title">
-                    <span class="title-top">Es el</span>
-                    <span class="title-main">Gran Día</span>
+                    <span class="title-top">¡Gracias por</span>
+                    <span class="title-main">Asistir!</span>
                 </h2>
 
                 <p class="today-text">
@@ -99,13 +99,9 @@
             </div>
             <!-- ===== FIN BANNER ===== -->
 
-            <div class="countdown-container">
-                <!-- Mensaje cuando el evento comienza -->
-                <div id="event-live-message" class="event-live-message" style="display: none;">
-                    <i class="fas fa-flag-checkered"></i> ¡EVENTO FINALIZADO!
-                </div>
-                
-                <p class="countdown-title">Faltan solamente:</p>
+            <!-- ===== CONTADOR SIEMPRE VISIBLE ===== -->
+            <div class="countdown-container" id="countdown-container">
+                <p class="countdown-title">Está a punto de iniciar</p>
                 <div class="countdown-grid">
                     <div class="countdown-item">
                         <div class="countdown-card">
@@ -131,6 +127,11 @@
                         </div>
                         <span class="countdown-label">Segundos</span>
                     </div>
+                </div>
+                
+                <!-- Badge de evento finalizado (se muestra debajo del contador) -->
+                <div id="event-finalizado-badge" class="event-finalizado-badge">
+                    <i class="fas fa-flag-checkered"></i> ¡EVENTO FINALIZADO!
                 </div>
             </div>
             
@@ -196,7 +197,7 @@
         </div>
     </section>
 
-        <!-- ===== GALERÍA (NUEVA SECCIÓN DEBAJO DEL HERO) ===== -->
+    <!-- ===== GALERÍA ===== -->
     <section class="gallery-section" id="galeria">
         <div class="container">
             <div class="gallery-header">
@@ -575,12 +576,11 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // ===== CONFETI ROCKERO (Fuegos artificiales con SVG) =====
+        // ===== CONFETI AUTOMÁTICO AL CARGAR LA PÁGINA =====
         function createRockConfetti() {
             const container = document.getElementById('confetti-container');
             const shapes = ['star', 'spark', 'diamond', 'circle', 'triangle', 'square'];
             
-            // SVG para cada forma
             const svgShapes = {
                 star: `<svg viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/></svg>`,
                 spark: `<svg viewBox="0 0 24 24"><path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/></svg>`,
@@ -590,18 +590,16 @@
                 square: `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/></svg>`
             };
             
-            // Colores rockeros (sin RGB)
-            const colors = ['#a855f7', '#c084fc', '#e9d5ff', '#ffffff', '#6d28d9', '#111111'];
+            const colors = ['#8b5cf6', '#c4b5fd', '#a855f7', '#ffffff', '#4c1d95', '#e9d5ff'];
             
-            for (let i = 0; i < 120; i++) {
+            for (let i = 0; i < 150; i++) {
                 const piece = document.createElement('div');
                 piece.className = `confetti-piece ${shapes[Math.floor(Math.random() * shapes.length)]}`;
                 
-                // Posición aleatoria
                 const left = Math.random() * 100;
-                const delay = Math.random() * 8;
+                const delay = Math.random() * 5;
                 const duration = 3 + Math.random() * 4;
-                const size = 10 + Math.random() * 16;
+                const size = 8 + Math.random() * 14;
                 
                 piece.style.left = left + '%';
                 piece.style.animationDelay = delay + 's';
@@ -609,29 +607,24 @@
                 piece.style.width = size + 'px';
                 piece.style.height = size + 'px';
                 
-                // Color aleatorio
                 const color = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.color = color;
                 piece.style.fill = color;
                 
-                // SVG correspondiente
                 const shapeKey = piece.className.replace('confetti-piece ', '');
                 const svgContent = svgShapes[shapeKey] || svgShapes.star;
                 piece.innerHTML = svgContent;
                 
-                // Rotación inicial
                 piece.style.transform = `rotate(${Math.random() * 360}deg)`;
                 
                 container.appendChild(piece);
             }
         }
-        
-        // Ejecutar confeti solo si es el día del evento
-        const today = new Date();
-        const isEventDay = today.getFullYear() === 2026 && today.getMonth() === 5 && today.getDate() === 27;
-        
-        if (isEventDay) {
-            setTimeout(createRockConfetti, 500);
-        }
+
+        // Lanzar confeti inmediatamente al cargar
+        window.addEventListener('load', () => {
+            createRockConfetti();
+        });
 
         // ===== MENÚ MÓVIL =====
         const toggle = document.getElementById('mobile-menu');
@@ -661,30 +654,18 @@
             }
         });
 
-        // ===== CUENTA REGRESIVA =====
+        // ===== CUENTA REGRESIVA Y ESTADO FINALIZADO =====
         const eventDate = new Date('June 27, 2026 18:00:00').getTime();
-        const liveMessage = document.getElementById('event-live-message');
+        const finalizadoBadge = document.getElementById('event-finalizado-badge');
         const countdownTitle = document.querySelector('.countdown-title');
-        const todayBanner = document.getElementById('today-banner');
+        const todayText = document.querySelector('.today-text');
+        const todayTitleTop = document.querySelector('.today-title .title-top');
+        const todayTitleMain = document.querySelector('.today-title .title-main');
+        const countdownContainer = document.getElementById('countdown-container');
         
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate - now;
-            
-            // Verificar si es el día del evento
-            const nowDate = new Date();
-            const isToday =
-                nowDate.getFullYear() === 2026 &&
-                nowDate.getMonth() === 5 && // Junio (0 = enero)
-                nowDate.getDate() === 27;
-            
-            todayBanner.style.display = isToday ? 'flex' : 'none';
-            
-            if (isToday) {
-                countdownTitle.textContent = 'Faltan solamente:';
-            } else {
-                countdownTitle.textContent = 'Faltan solamente:';
-            }
             
             if (distance < 0) {
                 // El evento ya finalizó
@@ -693,11 +674,28 @@
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
                 
-                // Mostrar mensaje de evento finalizado
-                liveMessage.style.display = 'flex';
-                countdownTitle.textContent = '¡El evento ya finalizó!';
+                // Cambiar el estado visual
+                countdownContainer.classList.add('state-finalizado');
+                
+                // Cambiar el título del contador
+                countdownTitle.textContent = 'Una celebración inolvidable';
+                
+                // Ocultar el texto descriptivo del banner
+                todayText.style.display = 'none';
+                
+                // Asegurar que el título del banner diga "¡Gracias por Asistir!"
+                todayTitleTop.textContent = '¡Gracias por';
+                todayTitleMain.textContent = 'Asistir!';
+                
                 return;
             }
+            
+            // Si no ha finalizado, mostrar el contador normal
+            countdownContainer.classList.remove('state-finalizado');
+            countdownTitle.textContent = 'Está a punto de iniciar';
+            todayText.style.display = 'block';
+            todayTitleTop.textContent = '¡Bienvenido al';
+            todayTitleMain.textContent = 'Gran Día!';
             
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -708,9 +706,6 @@
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            
-            // Ocultar mensaje de evento finalizado si el contador está activo
-            liveMessage.style.display = 'none';
         }
         
         updateCountdown();
@@ -762,7 +757,6 @@
         const totalPhotos = photos.length;
         let photoData = [];
         
-        // Recopilar datos de las fotos
         document.querySelectorAll('.gallery-photo-item img').forEach((img, index) => {
             photoData.push({
                 src: img.src,
@@ -801,7 +795,6 @@
             lightboxCaption.textContent = data.alt;
         }
         
-        // Event listeners
         photos.forEach((photo, index) => {
             photo.addEventListener('click', () => openLightbox(index));
         });
@@ -822,103 +815,6 @@
             if (e.key === 'ArrowLeft') prevImage();
             if (e.key === 'ArrowRight') nextImage();
         });
-    </script>
-
-    <script>
-        (function () {
-            const EVENT_DATE = new Date('June 27, 2026 18:00:00').getTime();
-            const EVENT_YEAR = 2026;
-            const EVENT_MONTH = 5;
-            const EVENT_DAY = 27;
-
-            function isTodayEventDay() {
-                const now = new Date();
-                return now.getFullYear() === EVENT_YEAR && now.getMonth() === EVENT_MONTH && now.getDate() === EVENT_DAY;
-            }
-
-            function setCountdownMood() {
-                const countdown = document.querySelector('.countdown-container');
-                const countdownTitle = document.querySelector('.countdown-title');
-                if (!countdown || !countdownTitle) return;
-
-                const distance = EVENT_DATE - Date.now();
-                countdown.classList.remove('state-normal', 'state-soon', 'state-urgent', 'state-critical', 'state-live');
-
-                if (distance <= 0) {
-                    countdown.classList.add('state-live');
-                    countdownTitle.textContent = 'El evento ya finalizó';
-                    return;
-                }
-
-                if (!isTodayEventDay()) {
-                    countdown.classList.add('state-normal');
-                    countdownTitle.textContent = 'Empieza en:';
-                    return;
-                }
-
-                const hoursLeft = distance / 3600000;
-
-                if (hoursLeft <= 1) {
-                    countdown.classList.add('state-critical');
-                    countdownTitle.textContent = 'En minutos inicia la Kermés';
-                } else if (hoursLeft <= 3) {
-                    countdown.classList.add('state-critical');
-                    countdownTitle.textContent = 'Ya casi comienza';
-                } else if (hoursLeft <= 6) {
-                    countdown.classList.add('state-urgent');
-                    countdownTitle.textContent = 'Está a punto de iniciar';
-                } else {
-                    countdown.classList.add('state-soon');
-                    countdownTitle.textContent = 'Hoy es el gran día';
-                }
-            }
-
-            function launchPurpleFireworks() {
-                if (!isTodayEventDay()) return;
-
-                const layer = document.createElement('div');
-                layer.className = 'fireworks-layer';
-                document.body.appendChild(layer);
-
-                const palette = ['#c4b5fd', '#8b5cf6', '#f5f3ff', '#6d28d9'];
-                const bursts = [
-                    { x: '18%', y: '24%' },
-                    { x: '78%', y: '26%' },
-                    { x: '50%', y: '18%' },
-                    { x: '30%', y: '42%' },
-                    { x: '70%', y: '43%' }
-                ];
-
-                bursts.forEach((pos, index) => {
-                    setTimeout(() => {
-                        const burst = document.createElement('div');
-                        burst.className = 'firework-burst';
-                        burst.style.setProperty('--x', pos.x);
-                        burst.style.setProperty('--y', pos.y);
-
-                        for (let i = 0; i < 22; i++) {
-                            const particle = document.createElement('span');
-                            particle.style.setProperty('--a', `${(360 / 22) * i}deg`);
-                            particle.style.setProperty('--d', `${52 + Math.random() * 58}px`);
-                            particle.style.setProperty('--c', palette[i % palette.length]);
-                            burst.appendChild(particle);
-                        }
-
-                        layer.appendChild(burst);
-                        setTimeout(() => burst.remove(), 1100);
-                    }, index * 280);
-                });
-
-                setTimeout(() => layer.remove(), 2600);
-            }
-
-            window.addEventListener('load', () => {
-                setCountdownMood();
-                launchPurpleFireworks();
-            });
-
-            setInterval(setCountdownMood, 1000);
-        })();
     </script>
 </body>
 </html>

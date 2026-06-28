@@ -1,13 +1,13 @@
-/* ===== HERO ROCKERO - EDICIÓN GRAN DÍA ===== */
+/* ===== HERO ROCKERO - DISEÑO TARJETA ===== */
 :root {
-    --rock-yellow: #a855f7;
-    --rock-yellow-dark: #6d28d9;
+    --rock-purple: #8b5cf6;
+    --rock-purple-light: #c4b5fd;
+    --rock-purple-dark: #4c1d95;
     --rock-black: #060606;
-    --rock-panel: #0b0b0b;
-    --rock-white: #f7f3e8;
-    --rock-muted: #c9c2b3;
-    --rock-border: #8b5cf6;
-    --rock-red: #4c1d95;
+    --rock-panel: #0d0b12;
+    --rock-white: #f5f3ff;
+    --rock-border: rgba(139, 92, 246, 0.4);
+    --rock-glow: rgba(139, 92, 246, 0.25);
 }
 
 .hero {
@@ -16,234 +16,187 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 88px;
-    padding-bottom: 32px;
+    padding: 120px 0 60px;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 50% 12%, rgba(168, 85, 247, 0.18), transparent 26%),
-        radial-gradient(circle at 16% 44%, rgba(76, 29, 149, 0.20), transparent 24%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.74) 55%, rgba(0, 0, 0, 0.94) 100%);
+.hero-background {
+    filter: brightness(0.4) saturate(0.8) !important;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0.18;
-    background-image:
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(circle at center, #000 0%, transparent 72%);
-}
-
-.hero-background,
 .hero-overlay {
-    z-index: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(6, 6, 6, 0.4) 0%,
+        rgba(6, 6, 6, 0.7) 50%,
+        rgba(6, 6, 6, 0.95) 100%
+    ) !important;
 }
 
+/* ===== TARJETA PRINCIPAL ===== */
 .hero-content {
     position: relative;
     z-index: 3;
-    width: min(100%, 920px);
-    max-width: 920px;
+    width: min(100%, 800px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    transform: scale(0.92);
-    transform-origin: center center;
+    gap: 24px;
 }
 
-.hero-title,
-.hero-subtitle {
-    display: none;
-}
-
-/* ===== GRAN DÍA CARD ===== */
+/* BANNER CENTRAL */
 .today-banner {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: min(100%, 780px);
-    margin: 0 auto 1.8rem;
-    padding: 2rem 2.2rem 1.55rem;
+    width: 100%;
+    padding: 40px 30px 30px;
     text-align: center;
-    border: 1px solid var(--rock-border);
-    border-radius: 30px;
-    background:
-        linear-gradient(180deg, rgba(18, 18, 18, 0.88), rgba(5, 5, 5, 0.94)),
-        repeating-linear-gradient(-12deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 7px);
-    box-shadow:
-        0 26px 80px rgba(0, 0, 0, 0.86),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 0 0 8px rgba(0, 0, 0, 0.16);
-    animation: heroDrop 0.75s cubic-bezier(.22,.9,.28,1) both;
+    background: rgba(13, 11, 18, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid var(--rock-border);
+    border-radius: 24px;
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 60px var(--rock-glow);
+    animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
+/* Etiqueta superior (KERMÉS ROCKERA) */
 .today-banner::before {
-    content: "27 DE JUNIO";
+    content: "KERMÉS ROCKERA";
     position: absolute;
-    top: -26px;
+    top: -18px;
     left: 50%;
-    transform: translateX(-50%) rotate(-1deg);
-    min-width: 250px;
-    padding: 0.48rem 1.6rem 0.52rem;
-    background: var(--rock-yellow);
-    color: #ffffff;
+    transform: translateX(-50%);
+    padding: 6px 28px;
+    background: var(--rock-purple-dark);
+    color: var(--rock-white);
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 900;
-    letter-spacing: 0.22rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.15rem;
     text-transform: uppercase;
-    clip-path: polygon(0 18%, 7% 0, 92% 7%, 100% 0, 96% 82%, 88% 100%, 10% 92%, 0 100%);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+    border-radius: 100px;
+    box-shadow: 0 4px 20px rgba(76, 29, 149, 0.5);
+    border: 1px solid var(--rock-purple);
+    white-space: nowrap;
 }
 
-.today-banner::after {
-    content: "";
+/* Iconos laterales */
+.rock-bolt {
     position: absolute;
-    inset: 12px;
-    border-radius: 22px;
-    border: 1px solid rgba(168, 85, 247, 0.28);
-    pointer-events: none;
+    width: 34px;
+    color: var(--rock-purple-light);
+    filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.4));
 }
 
-.today-small {
-    display: none;
+.rock-bolt.left {
+    left: -18px;
+    bottom: 50%;
+    transform: translateY(50%) rotate(-15deg);
 }
 
+.rock-bolt.right {
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%) rotate(15deg) scaleX(-1);
+}
+
+.rock-mark {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    color: rgba(196, 181, 253, 0.6);
+    transform: rotate(6deg);
+}
+
+/* Título */
 .today-title {
-    position: relative;
     margin: 0;
-    font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
-    font-size: clamp(5rem, 10vw, 9rem);
-    font-weight: 400;
-    line-height: 0.82;
+    font-family: 'Oswald', 'Bebas Neue', 'Space Grotesk', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.9;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--rock-yellow);
-    text-shadow:
-        0 4px 0 #4c1d95,
+    color: var(--rock-purple-light);
+    text-shadow: 
+        0 4px 0 var(--rock-purple-dark),
         0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
 .today-title .title-top {
     display: block;
     color: var(--rock-white);
-    font-size: 0.46em;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.05em;
+    font-size: 0.45em;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    font-weight: 800;
 }
 
 .today-title .title-main {
     display: block;
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+    color: var(--rock-purple-light);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
 }
 
+/* Texto descriptivo (oculto cuando finaliza) */
 .today-text {
-    max-width: 650px;
-    margin: 1.15rem auto 0;
-    color: var(--rock-white);
-    font-size: clamp(1rem, 2.1vw, 1.35rem);
-    line-height: 1.35;
-    font-weight: 600;
+    max-width: 550px;
+    margin: 8px auto 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    line-height: 1.5;
+    font-weight: 400;
+    display: block;
 }
 
 .today-text strong {
-    color: var(--rock-yellow);
-    font-weight: 900;
+    color: var(--rock-purple-light);
+    font-weight: 700;
 }
 
-.rock-mark {
-    position: absolute;
-    right: 2.2rem;
-    top: 2.3rem;
-    width: 58px;
-    height: 58px;
-    color: rgba(233, 213, 255, 0.78);
-    transform: rotate(8deg);
-}
-
-.rock-bolt {
-    position: absolute;
-    width: 46px;
-    color: var(--rock-yellow);
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,.6));
-}
-
-.rock-bolt.left {
-    left: -22px;
-    bottom: 48px;
-    transform: rotate(-12deg);
-}
-
-.rock-bolt.right {
-    right: -18px;
-    top: 54px;
-    transform: rotate(15deg) scaleX(-1);
-}
-
-@keyframes heroDrop {
-    from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* ===== COUNTDOWN ROCKERO ===== */
+/* ===== COUNTDOWN ESTILO TARJETAS ===== */
 .countdown-container {
+    width: 100%;
     margin-top: 0;
-    width: min(100%, 790px);
 }
 
 .countdown-title {
     position: relative;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.9rem;
-    margin-bottom: 1.1rem;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
     color: var(--rock-white);
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1rem, 1.7vw, 1.25rem);
-    font-weight: 900;
-    letter-spacing: 0.18rem;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.2rem;
     text-transform: uppercase;
 }
 
 .countdown-title::before,
 .countdown-title::after {
     content: "";
-    width: 48px;
-    height: 3px;
-    background: var(--rock-yellow);
-    clip-path: polygon(0 0, 100% 0, 86% 100%, 12% 100%);
+    width: 40px;
+    height: 2px;
+    background: var(--rock-purple);
+    opacity: 0.6;
 }
 
 .countdown-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(112px, 1fr));
-    gap: 1.25rem;
-    align-items: start;
-}
-
-.countdown-separator {
-    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
 }
 
 .countdown-item {
@@ -254,189 +207,188 @@
 
 .countdown-card {
     width: 100%;
-    min-width: 0;
-    padding: 1.15rem 1rem 0.85rem;
-    border: 1px solid rgba(168, 85, 247, 0.74);
-    border-radius: 18px;
-    background:
-        linear-gradient(180deg, rgba(12, 12, 12, 0.86), rgba(4, 4, 4, 0.94)),
-        repeating-linear-gradient(8deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 8px);
-    box-shadow:
-        0 18px 42px rgba(0, 0, 0, 0.68),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    padding: 16px 8px 12px;
+    background: rgba(6, 6, 6, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--rock-border);
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+}
+
+.countdown-card:hover {
+    border-color: var(--rock-purple-light);
+    box-shadow: 0 8px 32px var(--rock-glow);
+    transform: translateY(-2px);
 }
 
 .countdown-number {
     display: block;
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-size: clamp(3.1rem, 5.2vw, 5.2rem);
-    font-weight: 900;
-    line-height: 0.86;
-    letter-spacing: -0.06em;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1;
     color: var(--rock-white);
-    text-shadow: 0 3px 0 rgba(0,0,0,.8);
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .countdown-label {
-    position: relative;
-    margin-top: 0.7rem;
-    color: var(--rock-white);
-    font-size: 0.78rem;
-    font-weight: 900;
+    display: block;
+    margin-top: 8px;
+    color: var(--rock-purple-light);
+    font-size: 0.65rem;
+    font-weight: 700;
     letter-spacing: 0.12rem;
     text-transform: uppercase;
+    opacity: 0.8;
 }
 
 .countdown-label::after {
     content: "";
     display: block;
-    width: 44px;
-    height: 4px;
-    margin: 0.38rem auto 0;
-    background: var(--rock-yellow);
-    clip-path: polygon(0 50%, 14% 0, 100% 0, 86% 100%, 0 100%);
+    width: 24px;
+    height: 2px;
+    margin: 6px auto 0;
+    background: var(--rock-purple);
+    opacity: 0.4;
 }
 
-.event-live-message {
-    border: 1px solid var(--rock-yellow);
-    background: #0b0b0b;
-    color: var(--rock-yellow);
-    box-shadow: 0 20px 55px rgba(0,0,0,.65);
+/* ===== ESTADO FINALIZADO ===== */
+/* Mensaje de finalizado (se muestra debajo del contador) */
+.event-finalizado-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 30px;
+    background: rgba(6, 6, 6, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--rock-purple);
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--rock-purple-light);
+    margin-top: 4px;
+    box-shadow: 0 4px 20px var(--rock-glow);
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-finalizado-badge i {
+    font-size: 1.3rem;
+    color: var(--rock-purple-light);
+}
+
+/* Cuando el evento finalizó, mostramos el badge y mantenemos el contador */
+.countdown-container.state-finalizado .event-finalizado-badge {
+    display: flex;
+}
+
+.countdown-container.state-finalizado .today-text {
+    display: none;
 }
 
 /* ===== BOTÓN HERO ===== */
 .hero-actions {
-    margin-top: 1.9rem;
+    margin-top: 4px;
 }
 
 .btn-hero {
     border: none;
-    border-radius: 0;
-    padding: 0.95rem 2.65rem;
-    background: var(--rock-yellow);
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--rock-purple), var(--rock-purple-dark));
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.08rem;
-    font-weight: 900;
+    font-size: 1rem;
+    font-weight: 700;
     letter-spacing: 0.04rem;
     text-transform: uppercase;
-    clip-path: polygon(4% 0, 96% 4%, 100% 50%, 96% 96%, 3% 100%, 0 48%);
-    box-shadow: 0 20px 45px rgba(0,0,0,.6);
+    border-radius: 100px;
+    box-shadow: 0 8px 30px var(--rock-glow);
+    transition: all var(--transition-bounce);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .btn-hero:hover {
-    transform: translateY(-3px) rotate(-1deg);
-    background: #c084fc;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, var(--rock-purple-light), var(--rock-purple));
 }
 
 .hero-organizer {
-    margin-top: 1.4rem;
-    color: var(--rock-white);
-    opacity: 0.9;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
 }
 
 .organizer-logo {
-    border: 1px solid var(--rock-yellow);
+    border: 1px solid var(--rock-border);
     border-radius: 50%;
-    background: #090909;
+    background: rgba(6, 6, 6, 0.5);
 }
 
-.scroll-indicator {
-    z-index: 3;
-}
-
-@media (max-width: 900px) {
-    .hero-content {
-        transform: scale(0.96);
-        width: min(100%, 760px);
-    }
-
-    .today-banner {
-        width: min(100%, 700px);
-    }
-
-    .countdown-grid {
-        gap: 0.85rem;
-    }
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .hero {
-        padding-top: 92px;
-        padding-bottom: 38px;
+        padding: 100px 0 40px;
     }
-
-    .hero-content {
-        transform: none;
-        width: 100%;
-    }
-
+    
     .today-banner {
-        width: min(100%, 94vw);
-        padding: 1.85rem 1.1rem 1.25rem;
-        border-radius: 24px;
+        padding: 32px 20px 24px;
+        border-radius: 20px;
+        border-width: 1.5px;
     }
-
+    
     .today-banner::before {
-        min-width: 205px;
-        font-size: 0.85rem;
-        letter-spacing: 0.15rem;
-        top: -22px;
+        font-size: 0.7rem;
+        padding: 4px 16px;
+        top: -14px;
     }
-
-    .today-title {
-        font-size: clamp(3.5rem, 18vw, 5.5rem);
-    }
-
-    .today-text {
-        font-size: 0.98rem;
-    }
-
-    .rock-mark {
+    
+    .rock-bolt {
         display: none;
     }
-
-    .rock-bolt {
-        width: 34px;
+    
+    .rock-mark {
+        width: 30px;
+        height: 30px;
+        right: 12px;
+        top: 12px;
     }
-
+    
     .countdown-grid {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
-        gap: 0.9rem;
-        width: min(100%, 330px);
-        margin: 0 auto;
+        gap: 8px;
     }
-
-    .countdown-number {
-        font-size: 3.2rem;
+    
+    .countdown-card {
+        padding: 12px 4px 10px;
     }
-
-    .countdown-title {
+    
+    .event-finalizado-badge {
         font-size: 0.9rem;
-        letter-spacing: 0.12rem;
-    }
-
-    .countdown-title::before,
-    .countdown-title::after {
-        width: 26px;
-    }
-
-    .btn-hero {
-        padding: 0.88rem 2rem;
-        font-size: 0.96rem;
+        padding: 10px 20px;
+        max-width: 100%;
     }
 }
 
-@media (max-width: 420px) {
-    .countdown-grid {
-        width: min(100%, 300px);
-    }
-
-    .countdown-number {
-        font-size: 2.8rem;
-    }
-
+@media (max-width: 480px) {
     .today-title {
-        font-size: clamp(3rem, 16vw, 4.2rem);
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+    
+    .countdown-number {
+        font-size: 2.2rem;
+    }
+    
+    .btn-hero {
+        padding: 12px 24px;
+        font-size: 0.85rem;
     }
 }
