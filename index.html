@@ -821,33 +821,46 @@
             observer.observe(el);
         });
 
-        // ===== CARRUSEL 3D STACK (Lógica de navegación) =====
+        // ===== CARRUSEL 3D STACK (INTERCAMBIO Y BLOQUEO) =====
         const videoItems = document.querySelectorAll('.video-stack-item');
+        const videoElements = document.querySelectorAll('.video-stack-item video');
         const prevBtn = document.getElementById('videoPrevBtn');
         const nextBtn = document.getElementById('videoNextBtn');
-        let currentCenterIndex = 1; // El índice 1 es el centro por defecto
+        
+        // Array para guardar el orden de los elementos (IDs de los videos)
+        let videoOrder = [0, 1, 2]; // 0: Izquierda, 1: Centro, 2: Derecha
 
         function updateCarousel() {
             videoItems.forEach((item, index) => {
-                // Calculamos la nueva posición relativa al centro
-                let offset = index - currentCenterIndex;
-                
-                // Si el offset es mayor que 1 o menor que -1, lo envolvemos
-                // (Para que el carrusel sea circular con solo 3 elementos)
-                if (offset > 1) offset = -1;
-                if (offset < -1) offset = 1;
-
-                item.setAttribute('data-index', offset + 1); // Convertimos a 0, 1, 2
+                // Asignamos el índice según el orden actual
+                const newIndex = videoOrder[index];
+                item.setAttribute('data-index', newIndex);
             });
         }
 
+        // Función para rotar a la derecha (El centro va a la derecha, la izquierda al centro...)
         function nextVideo() {
-            currentCenterIndex = (currentCenterIndex + 1) % videoItems.length;
+            // Pausar todos los videos antes de mover
+            videoElements.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
+            });
+
+            // Rotar el array: [2, 0, 1] -> El último pasa al primero
+            videoOrder.unshift(videoOrder.pop());
             updateCarousel();
         }
 
+        // Función para rotar a la izquierda (El centro va a la izquierda, la derecha al centro...)
         function prevVideo() {
-            currentCenterIndex = (currentCenterIndex - 1 + videoItems.length) % videoItems.length;
+            // Pausar todos los videos antes de mover
+            videoElements.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
+            });
+
+            // Rotar el array: [1, 2, 0] -> El primero pasa al último
+            videoOrder.push(videoOrder.shift());
             updateCarousel();
         }
 
@@ -855,8 +868,21 @@
         nextBtn.addEventListener('click', nextVideo);
         prevBtn.addEventListener('click', prevVideo);
 
-        // Inicializar el carrusel
+        // Inicializar el carrusel con el orden base
         updateCarousel();
+
+        // ===== LÓGICA DE BLOQUEO DE REPRODUCCIÓN =====
+        videoElements.forEach(video => {
+            video.addEventListener('play', function() {
+                // Si este video se reproduce, pausar y reiniciar todos los demás
+                videoElements.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                        otherVideo.currentTime = 0;
+                    }
+                });
+            });
+        });
 
         // ===== LIGHTBOX (Funcional para todo el carrusel de fotos) =====
         const lightbox = document.getElementById('lightbox');
