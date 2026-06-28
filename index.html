@@ -199,72 +199,87 @@
         </div>
     </section>
 
-    <!-- ===== GALERÍA ===== -->
+    <!-- ===== GALERÍA COMPLETA (Videos Verticales + Carrusel) ===== -->
     <section class="gallery-section" id="galeria">
-        <div class="container">
+        <div class="container" style="max-width: 100%; padding: 0;">
             <div class="gallery-header">
-                <span class="section-tag">Recuerdos</span>
+                <span class="section-tag"><i class="fas fa-star"></i> Recuerdos</span>
                 <h2>Revive algunos de los mejores momentos</h2>
                 <p>Una mirada a la magia de la Kermés Rockera 2026</p>
             </div>
-            
-            <!-- Video destacado -->
-            <div class="gallery-video-wrapper animate-hidden">
-                <div class="gallery-video-container">
-                    <video controls poster="assets/lg.png">
-                        <source src="assets/video.mp4" type="video/mp4" />
-                        Tu navegador no soporta el elemento de video.
-                    </video>
-                </div>
+
+            <!-- ========================================== -->
+            <!-- 1. VIDEOS DESTACADOS (Verticales)          -->
+            <!-- ========================================== -->
+            <div class="gallery-videos-section animate-hidden">
+                <h3><i class="fas fa-star"></i> Momentos destacados</h3>
                 
-                <!-- Controles debajo del video -->
-                <div class="gallery-video-controls">
-                    <div class="gallery-video-info">
-                        <h3><i class="fas fa-guitar"></i> Kermés Rockera 2026</h3>
-                        <p>Los mejores momentos de una tarde inolvidable</p>
+                <div class="videos-grid">
+                    <div class="video-vertical-card">
+                        <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
+                        <video controls poster="assets/lg.png">
+                            <source src="assets/paralaweb/1000258379.mp4" type="video/mp4" />
+                        </video>
                     </div>
-                    <div class="gallery-video-actions">
-                        <a href="https://www.facebook.com/liderazgo.vida" target="_blank" class="btn-action btn-facebook">
-                            <i class="fab fa-facebook-f"></i> Compartir
-                        </a>
-                        <a href="#galeria" class="btn-action btn-play">
-                            <i class="fas fa-play"></i> Ver video completo
-                        </a>
+                    <div class="video-vertical-card">
+                        <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
+                        <video controls poster="assets/lg.png">
+                            <source src="assets/paralaweb/1000258382.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div class="video-vertical-card">
+                        <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
+                        <video controls poster="assets/lg.png">
+                            <source src="assets/paralaweb/1000258383.mp4" type="video/mp4" />
+                        </video>
                     </div>
                 </div>
             </div>
-            
-            <!-- Galería de fotos -->
-            <div class="gallery-photos-grid">
-                <div class="gallery-photo-item animate-hidden" data-index="0">
-                    <img src="assets/foto1.jpg" alt="Momentos de la kermés" />
-                    <div class="gallery-photo-overlay">
-                        <i class="fas fa-expand"></i>
+
+            <!-- ========================================== -->
+            <!-- 2. CARRUSEL HORIZONTAL DOBLE (Full Width)  -->
+            <!-- ========================================== -->
+            <div class="gallery-photos-section animate-hidden">
+                <h3><i class="fas fa-images"></i> Galería de Fotos</h3>
+                
+                <div class="carousel-horizontal-container">
+                    
+                    <!-- FILA 1: MOVIMIENTO HACIA LA IZQUIERDA -->
+                    <div class="carousel-row left">
+                        <div class="carousel-track-horizontal">
+                            <!-- Primer bloque de 5 imágenes -->
+                            <img src="assets/paralaweb/1000258370.jpg" alt="Foto 1" loading="lazy" />
+                            <img src="assets/paralaweb/1000258371.jpg" alt="Foto 2" loading="lazy" />
+                            <img src="assets/paralaweb/1000258372.jpg" alt="Foto 3" loading="lazy" />
+                            <img src="assets/paralaweb/1000258373.jpg" alt="Foto 4" loading="lazy" />
+                            <img src="assets/paralaweb/1000258374.jpg" alt="Foto 5" loading="lazy" />
+                            <!-- Duplicado para efecto infinito -->
+                            <img src="assets/paralaweb/1000258370.jpg" alt="Foto 1" loading="lazy" />
+                            <img src="assets/paralaweb/1000258371.jpg" alt="Foto 2" loading="lazy" />
+                            <img src="assets/paralaweb/1000258372.jpg" alt="Foto 3" loading="lazy" />
+                            <img src="assets/paralaweb/1000258373.jpg" alt="Foto 4" loading="lazy" />
+                            <img src="assets/paralaweb/1000258374.jpg" alt="Foto 5" loading="lazy" />
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-photo-item animate-hidden" data-index="1">
-                    <img src="assets/foto2.jpg" alt="Momentos de la kermés" />
-                    <div class="gallery-photo-overlay">
-                        <i class="fas fa-expand"></i>
+
+                    <!-- FILA 2: MOVIMIENTO HACIA LA DERECHA -->
+                    <div class="carousel-row right">
+                        <div class="carousel-track-horizontal">
+                            <!-- Primer bloque de 5 imágenes -->
+                            <img src="assets/paralaweb/1000258375.jpg" alt="Foto 6" loading="lazy" />
+                            <img src="assets/paralaweb/1000258376.jpg" alt="Foto 7" loading="lazy" />
+                            <img src="assets/paralaweb/1000258377.jpg" alt="Foto 8" loading="lazy" />
+                            <img src="assets/paralaweb/1000258380.jpg" alt="Foto 9" loading="lazy" />
+                            <img src="assets/paralaweb/1000258381.jpg" alt="Foto 10" loading="lazy" />
+                            <!-- Duplicado para efecto infinito -->
+                            <img src="assets/paralaweb/1000258375.jpg" alt="Foto 6" loading="lazy" />
+                            <img src="assets/paralaweb/1000258376.jpg" alt="Foto 7" loading="lazy" />
+                            <img src="assets/paralaweb/1000258377.jpg" alt="Foto 8" loading="lazy" />
+                            <img src="assets/paralaweb/1000258380.jpg" alt="Foto 9" loading="lazy" />
+                            <img src="assets/paralaweb/1000258381.jpg" alt="Foto 10" loading="lazy" />
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-photo-item animate-hidden" data-index="2">
-                    <img src="assets/foto3.jpg" alt="Momentos de la kermés" />
-                    <div class="gallery-photo-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
-                </div>
-                <div class="gallery-photo-item animate-hidden" data-index="3">
-                    <img src="assets/foto4.jpg" alt="Momentos de la kermés" />
-                    <div class="gallery-photo-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
-                </div>
-                <div class="gallery-photo-item animate-hidden" data-index="4">
-                    <img src="assets/foto5.jpg" alt="Momentos de la kermés" />
-                    <div class="gallery-photo-overlay">
-                        <i class="fas fa-expand"></i>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -784,12 +799,12 @@
             });
         }, observerOptions);
         
-        document.querySelectorAll('.gallery-video-wrapper, .gallery-photo-item, .food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .rock-banner-wrapper').forEach(el => {
+        document.querySelectorAll('.gallery-videos-section, .gallery-photos-section, .food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .rock-banner-wrapper').forEach(el => {
             el.classList.add('animate-hidden');
             observer.observe(el);
         });
 
-        // ===== LIGHTBOX =====
+        // ===== LIGHTBOX (Funcional para todo el carrusel) =====
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -798,11 +813,13 @@
         const lightboxNext = document.getElementById('lightbox-next');
         let currentIndex = 0;
         
-        const photos = document.querySelectorAll('.gallery-photo-item');
-        const totalPhotos = photos.length;
+        // Recopilamos todas las imágenes del carrusel
+        const carouselPhotos = document.querySelectorAll('.carousel-track-horizontal img');
+        const allPhotos = [...carouselPhotos];
+        const totalPhotos = allPhotos.length;
         let photoData = [];
         
-        document.querySelectorAll('.gallery-photo-item img').forEach((img, index) => {
+        allPhotos.forEach((img, index) => {
             photoData.push({
                 src: img.src,
                 alt: img.alt
@@ -840,7 +857,8 @@
             lightboxCaption.textContent = data.alt;
         }
         
-        photos.forEach((photo, index) => {
+        // Event listeners para TODAS las imágenes del carrusel
+        allPhotos.forEach((photo, index) => {
             photo.addEventListener('click', () => openLightbox(index));
         });
         
