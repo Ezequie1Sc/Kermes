@@ -199,7 +199,7 @@
         </div>
     </section>
 
-    <!-- ===== GALERÍA COMPLETA (Videos Verticales + Carrusel) ===== -->
+    <!-- ===== GALERÍA COMPLETA (Videos 3D + Carrusel) ===== -->
     <section class="gallery-section" id="galeria">
         <div class="container" style="max-width: 100%; padding: 0;">
             <div class="gallery-header">
@@ -209,30 +209,47 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- 1. VIDEOS DESTACADOS (Verticales)          -->
+            <!-- 1. VIDEOS DESTACADOS (Carrusel 3D Stack)   -->
             <!-- ========================================== -->
             <div class="gallery-videos-section animate-hidden">
                 <h3><i class="fas fa-star"></i> Momentos destacados</h3>
                 
-                <div class="videos-grid">
-                    <div class="video-vertical-card">
+                <div class="video-stack-carousel" id="videoStackCarousel">
+                    
+                    <!-- Video 1 (Izquierda) -->
+                    <div class="video-stack-item" data-index="0">
                         <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258379.mp4" type="video/mp4" />
                         </video>
                     </div>
-                    <div class="video-vertical-card">
+
+                    <!-- Video 2 (Centro - Principal) -->
+                    <div class="video-stack-item" data-index="1">
                         <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258382.mp4" type="video/mp4" />
                         </video>
                     </div>
-                    <div class="video-vertical-card">
+
+                    <!-- Video 3 (Derecha) -->
+                    <div class="video-stack-item" data-index="2">
                         <div class="video-vertical-badge"><i class="fas fa-bolt"></i> Destacado</div>
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258383.mp4" type="video/mp4" />
                         </video>
                     </div>
+
+                </div>
+
+                <!-- Controles del Carrusel 3D -->
+                <div class="video-stack-controls">
+                    <button class="video-stack-btn" id="videoPrevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="video-stack-btn" id="videoNextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
@@ -804,16 +821,53 @@
             observer.observe(el);
         });
 
-        // ===== LIGHTBOX (Funcional para todo el carrusel) =====
+        // ===== CARRUSEL 3D STACK (Lógica de navegación) =====
+        const videoItems = document.querySelectorAll('.video-stack-item');
+        const prevBtn = document.getElementById('videoPrevBtn');
+        const nextBtn = document.getElementById('videoNextBtn');
+        let currentCenterIndex = 1; // El índice 1 es el centro por defecto
+
+        function updateCarousel() {
+            videoItems.forEach((item, index) => {
+                // Calculamos la nueva posición relativa al centro
+                let offset = index - currentCenterIndex;
+                
+                // Si el offset es mayor que 1 o menor que -1, lo envolvemos
+                // (Para que el carrusel sea circular con solo 3 elementos)
+                if (offset > 1) offset = -1;
+                if (offset < -1) offset = 1;
+
+                item.setAttribute('data-index', offset + 1); // Convertimos a 0, 1, 2
+            });
+        }
+
+        function nextVideo() {
+            currentCenterIndex = (currentCenterIndex + 1) % videoItems.length;
+            updateCarousel();
+        }
+
+        function prevVideo() {
+            currentCenterIndex = (currentCenterIndex - 1 + videoItems.length) % videoItems.length;
+            updateCarousel();
+        }
+
+        // Event Listeners para los botones
+        nextBtn.addEventListener('click', nextVideo);
+        prevBtn.addEventListener('click', prevVideo);
+
+        // Inicializar el carrusel
+        updateCarousel();
+
+        // ===== LIGHTBOX (Funcional para todo el carrusel de fotos) =====
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const lightboxClose = document.getElementById('lightbox-close');
         const lightboxPrev = document.getElementById('lightbox-prev');
         const lightboxNext = document.getElementById('lightbox-next');
-        let currentIndex = 0;
+        let lightboxIndex = 0;
         
-        // Recopilamos todas las imágenes del carrusel
+        // Recopilamos todas las imágenes del carrusel de fotos
         const carouselPhotos = document.querySelectorAll('.carousel-track-horizontal img');
         const allPhotos = [...carouselPhotos];
         const totalPhotos = allPhotos.length;
@@ -827,7 +881,7 @@
         });
         
         function openLightbox(index) {
-            currentIndex = index;
+            lightboxIndex = index;
             const data = photoData[index];
             lightboxImage.src = data.src;
             lightboxImage.alt = data.alt;
@@ -841,30 +895,30 @@
             document.body.style.overflow = '';
         }
         
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos;
-            const data = photoData[currentIndex];
+        function prevLightboxImage() {
+            lightboxIndex = (lightboxIndex - 1 + totalPhotos) % totalPhotos;
+            const data = photoData[lightboxIndex];
             lightboxImage.src = data.src;
             lightboxImage.alt = data.alt;
             lightboxCaption.textContent = data.alt;
         }
         
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % totalPhotos;
-            const data = photoData[currentIndex];
+        function nextLightboxImage() {
+            lightboxIndex = (lightboxIndex + 1) % totalPhotos;
+            const data = photoData[lightboxIndex];
             lightboxImage.src = data.src;
             lightboxImage.alt = data.alt;
             lightboxCaption.textContent = data.alt;
         }
         
-        // Event listeners para TODAS las imágenes del carrusel
+        // Event listeners para las fotos del carrusel
         allPhotos.forEach((photo, index) => {
             photo.addEventListener('click', () => openLightbox(index));
         });
         
         lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', prevImage);
-        lightboxNext.addEventListener('click', nextImage);
+        lightboxPrev.addEventListener('click', prevLightboxImage);
+        lightboxNext.addEventListener('click', nextLightboxImage);
         
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
@@ -875,8 +929,8 @@
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') prevImage();
-            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+            if (e.key === 'ArrowRight') nextLightboxImage();
         });
     </script>
 </body>
