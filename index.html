@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="patches.css" />
     <link rel="stylesheet" href="confetti.css" />
     <link rel="stylesheet" href="gran-dia.css" />
+    <link rel="stylesheet" href="gallery.css" />
 </head>
 <body>
     <!-- ===== CONFETI ROCKERO (Fuegos artificiales) ===== -->
@@ -42,6 +43,7 @@
             
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#galeria" class="nav-link">Galería</a></li>
                 <li><a href="#evento" class="nav-link">Evento</a></li>
                 <li><a href="#comida" class="nav-link">Comida</a></li>
                 <li><a href="#juegos" class="nav-link">Juegos</a></li>
@@ -100,7 +102,7 @@
             <div class="countdown-container">
                 <!-- Mensaje cuando el evento comienza -->
                 <div id="event-live-message" class="event-live-message" style="display: none;">
-                    <i class="fas fa-bullhorn"></i> ¡EVENTO EN VIVO!
+                    <i class="fas fa-flag-checkered"></i> ¡EVENTO FINALIZADO!
                 </div>
                 
                 <p class="countdown-title">Faltan solamente:</p>
@@ -133,9 +135,9 @@
             </div>
             
             <div class="hero-actions">
-                <a href="#evento" class="btn-hero">
-                    <span>Conocer más</span>
-                    <i class="fas fa-arrow-down"></i>
+                <a href="#galeria" class="btn-hero">
+                    <span>Ver momentos</span>
+                    <i class="fas fa-images"></i>
                 </a>
             </div>
             
@@ -193,6 +195,92 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== GALERÍA (NUEVA SECCIÓN DEBAJO DEL HERO) ===== -->
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="gallery-header">
+                <span class="section-tag">Recuerdos</span>
+                <h2>Revive algunos de los mejores momentos</h2>
+                <p>Una mirada a la magia de la Kermés Rockera 2026</p>
+            </div>
+            
+            <!-- Video destacado -->
+            <div class="gallery-video-wrapper animate-hidden">
+                <div class="gallery-video-container">
+                    <video controls poster="assets/lg.png">
+                        <source src="assets/video.mp4" type="video/mp4" />
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div class="gallery-video-overlay">
+                        <div class="gallery-video-overlay-text">
+                            <h3>🎸 Kermés Rockera 2026</h3>
+                            <p>Los mejores momentos de una tarde inolvidable</p>
+                        </div>
+                        <div class="gallery-video-share">
+                            <a href="https://www.facebook.com/liderazgo.vida" target="_blank" class="btn-facebook">
+                                <i class="fab fa-facebook-f"></i> Compartir
+                            </a>
+                            <a href="#galeria" class="btn-watch">
+                                <i class="fas fa-play"></i> Ver video completo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Galería de fotos -->
+            <div class="gallery-photos-grid">
+                <div class="gallery-photo-item animate-hidden" data-index="0">
+                    <img src="assets/foto1.jpg" alt="Momentos de la kermés" />
+                    <div class="gallery-photo-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-photo-item animate-hidden" data-index="1">
+                    <img src="assets/foto2.jpg" alt="Momentos de la kermés" />
+                    <div class="gallery-photo-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-photo-item animate-hidden" data-index="2">
+                    <img src="assets/foto3.jpg" alt="Momentos de la kermés" />
+                    <div class="gallery-photo-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-photo-item animate-hidden" data-index="3">
+                    <img src="assets/foto4.jpg" alt="Momentos de la kermés" />
+                    <div class="gallery-photo-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+                <div class="gallery-photo-item animate-hidden" data-index="4">
+                    <img src="assets/foto5.jpg" alt="Momentos de la kermés" />
+                    <div class="gallery-photo-overlay">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav prev" id="lightbox-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav next" id="lightbox-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="Galería" />
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
 
     <!-- ===== SOBRE EL EVENTO ===== -->
     <section class="section about-section" id="evento">
@@ -597,15 +685,15 @@
             }
             
             if (distance < 0) {
-                // El evento ya comenzó
+                // El evento ya finalizó
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
                 
-                // Mostrar mensaje de evento en vivo
+                // Mostrar mensaje de evento finalizado
                 liveMessage.style.display = 'flex';
-                countdownTitle.textContent = '¡El evento ya está aquí!';
+                countdownTitle.textContent = '¡El evento ya finalizó!';
                 return;
             }
             
@@ -619,7 +707,7 @@
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
             
-            // Ocultar mensaje de evento en vivo si el contador está activo
+            // Ocultar mensaje de evento finalizado si el contador está activo
             liveMessage.style.display = 'none';
         }
         
@@ -654,9 +742,83 @@
             });
         }, observerOptions);
         
-        document.querySelectorAll('.food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .rock-banner-wrapper').forEach(el => {
+        document.querySelectorAll('.gallery-video-wrapper, .gallery-photo-item, .food-card, .feature-item, .location-card, .info-strip-item, .games-image-wrapper, .foundation-card, .rock-banner-wrapper').forEach(el => {
             el.classList.add('animate-hidden');
             observer.observe(el);
+        });
+
+        // ===== LIGHTBOX =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        let currentIndex = 0;
+        
+        const photos = document.querySelectorAll('.gallery-photo-item');
+        const totalPhotos = photos.length;
+        let photoData = [];
+        
+        // Recopilar datos de las fotos
+        document.querySelectorAll('.gallery-photo-item img').forEach((img, index) => {
+            photoData.push({
+                src: img.src,
+                alt: img.alt
+            });
+        });
+        
+        function openLightbox(index) {
+            currentIndex = index;
+            const data = photoData[index];
+            lightboxImage.src = data.src;
+            lightboxImage.alt = data.alt;
+            lightboxCaption.textContent = data.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos;
+            const data = photoData[currentIndex];
+            lightboxImage.src = data.src;
+            lightboxImage.alt = data.alt;
+            lightboxCaption.textContent = data.alt;
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalPhotos;
+            const data = photoData[currentIndex];
+            lightboxImage.src = data.src;
+            lightboxImage.alt = data.alt;
+            lightboxCaption.textContent = data.alt;
+        }
+        
+        // Event listeners
+        photos.forEach((photo, index) => {
+            photo.addEventListener('click', () => openLightbox(index));
+        });
+        
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
         });
     </script>
 
@@ -682,7 +844,7 @@
 
                 if (distance <= 0) {
                     countdown.classList.add('state-live');
-                    countdownTitle.textContent = 'El evento ya inició';
+                    countdownTitle.textContent = 'El evento ya finalizó';
                     return;
                 }
 
