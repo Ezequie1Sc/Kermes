@@ -1,4 +1,4 @@
-/* ===== CONFETI ROCKERO ===== */
+/* ===== CONFETI ROCKERO - PALETA MORADA ===== */
 .confetti-container {
     position: fixed;
     top: 0;
@@ -24,12 +24,13 @@
     display: block;
 }
 
-.confetti-piece.star svg { fill: #f4c542; }
-.confetti-piece.spark svg { fill: #ffffff; }
-.confetti-piece.diamond svg { fill: #b8b8b8; }
-.confetti-piece.circle svg { fill: #c2410c; }
-.confetti-piece.triangle svg { fill: #7f1d1d; }
-.confetti-piece.square svg { fill: #111111; }
+/* ===== NUEVA PALETA DE COLORES (Morado / Negro / Blanco) ===== */
+.confetti-piece.star svg { fill: #8b5cf6; }      /* Morado principal */
+.confetti-piece.spark svg { fill: #c4b5fd; }     /* Morado claro */
+.confetti-piece.diamond svg { fill: #ffffff; }   /* Blanco */
+.confetti-piece.circle svg { fill: #4c1d95; }    /* Morado oscuro */
+.confetti-piece.triangle svg { fill: #a855f7; }  /* Morado vibrante */
+.confetti-piece.square svg { fill: #1a1a1e; }    /* Negro con tono sutil */
 
 @keyframes confettiFall {
     0% {
