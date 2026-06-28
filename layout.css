@@ -1,0 +1,55 @@
+/* ===== SECCIONES GENERALES ===== */
+.section {
+    padding: 100px 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 64px;
+}
+
+.section-header-left {
+    text-align: left;
+    margin: 0 0 0 0;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-light);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    background: var(--accent-soft);
+    border-radius: 100px;
+    border: 1px solid var(--accent-medium);
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #d4c4f7 0%, #b794f4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-description {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 64px 0;
+    }
+    .section-header {
+        margin-bottom: 40px;
+    }
+}
