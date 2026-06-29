@@ -302,6 +302,17 @@
         </div>
     </section>
 
+    <!-- ===== MODAL DE VIDEO FULLSCREEN (TIPO REEL) ===== -->
+    <div class="video-fullscreen-modal" id="videoFullscreenModal">
+        <button class="video-fullscreen-close" id="videoFullscreenClose">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="video-fullscreen-frame">
+            <video id="videoFullscreenPlayer" controls playsinline></video>
+        </div>
+    </div>
+
     <!-- ===== LIGHTBOX ===== -->
     <div id="lightbox" class="lightbox">
         <button class="lightbox-close" id="lightbox-close">
@@ -852,8 +863,35 @@
         prevBtn.addEventListener('click', prevVideo);
         updateCarousel();
 
-        // ===== LÓGICA DE BLOQUEO DE REPRODUCCIÓN (ACTUALIZADA) =====
+        // ===== LÓGICA DE REPRODUCCIÓN Y MODAL FULLSCREEN =====
+        const fullscreenModal = document.getElementById('videoFullscreenModal');
+        const fullscreenPlayer = document.getElementById('videoFullscreenPlayer');
+        const fullscreenClose = document.getElementById('videoFullscreenClose');
+
+        // 1. Doble clic para abrir el modal vertical
         videoElements.forEach(video => {
+            video.addEventListener('dblclick', () => {
+                // Pausar todos los videos en el carrusel
+                videoElements.forEach(v => {
+                    v.pause();
+                    v.currentTime = 0;
+                });
+
+                // Cargar el video en el modal
+                const source = video.querySelector('source');
+                if (source) {
+                    fullscreenPlayer.src = source.src;
+                } else {
+                    fullscreenPlayer.src = video.src;
+                }
+                
+                // Mostrar modal y reproducir
+                fullscreenModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                fullscreenPlayer.play();
+            });
+
+            // 2. Bloqueo de reproducción múltiple en el carrusel
             video.addEventListener('play', function () {
                 videoElements.forEach(otherVideo => {
                     if (otherVideo !== video) {
@@ -862,22 +900,28 @@
                     }
                 });
             });
+        });
 
-            video.addEventListener('fullscreenchange', function () {
-                videoElements.forEach(otherVideo => {
-                    if (otherVideo !== video) {
-                        otherVideo.pause();
-                    }
-                });
-            });
+        // ===== FUNCIONES PARA CERRAR EL MODAL =====
+        function closeVideoFullscreen() {
+            fullscreenPlayer.pause();
+            fullscreenPlayer.src = '';
+            fullscreenModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-            video.addEventListener('webkitfullscreenchange', function () {
-                videoElements.forEach(otherVideo => {
-                    if (otherVideo !== video) {
-                        otherVideo.pause();
-                    }
-                });
-            });
+        fullscreenClose.addEventListener('click', closeVideoFullscreen);
+
+        fullscreenModal.addEventListener('click', e => {
+            if (e.target === fullscreenModal) {
+                closeVideoFullscreen();
+            }
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && fullscreenModal.classList.contains('active')) {
+                closeVideoFullscreen();
+            }
         });
 
         // ===== LIGHTBOX =====
