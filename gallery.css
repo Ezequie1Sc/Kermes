@@ -166,6 +166,13 @@
 /* OCULTAR EL BOTÓN DE PANTALLA COMPLETA NATIVO */
 .video-stack-item video::-webkit-media-controls-fullscreen-button {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .video-stack-item video::-webkit-media-controls-download-button {
@@ -178,34 +185,58 @@
 }
 
 /* =========================================================
-   BOTÓN DE PANTALLA COMPLETA PERSONALIZADO
+   BOTÓN DE PANTALLA COMPLETA PERSONALIZADO (OCULTO POR DEFECTO)
    ========================================================= */
 .video-custom-fullscreen-btn {
     position: absolute;
-    bottom: 8px;
-    right: 50px; /* Colocado justo antes de los 3 puntos */
-    z-index: 4;
+    right: 12px;
+    bottom: 54px;
+    z-index: 10;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    background: transparent;
-    border: none;
+
+    background: rgba(7, 7, 11, 0.72);
+    border: 1px solid rgba(196, 181, 253, 0.45);
     color: #ffffff;
-    font-size: 1.1rem;
+
+    font-size: 1rem;
     cursor: pointer;
-    pointer-events: auto;
-    transition: color 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Oculto por defecto */
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+    transition: all 0.25s ease;
+    
+    /* OCULTO POR DEFECTO (NUEVO COMPORTAMIENTO) */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .video-custom-fullscreen-btn:hover {
-    color: #c4b5fd;
-    transform: scale(1.15);
+    background: #7c3aed;
+    color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
 }
 
 .video-custom-fullscreen-btn i {
-    filter: drop-shadow(0 1px 6px rgba(0,0,0,0.9));
+    pointer-events: none;
+}
+
+/* =========================================================
+   MOSTRAR EL BOTÓN AL INTERACTUAR CON EL VIDEO
+   ========================================================= */
+.video-stack-item:hover .video-custom-fullscreen-btn,
+.video-stack-item:has(video:hover) .video-custom-fullscreen-btn,
+.video-stack-item:has(video:focus) .video-custom-fullscreen-btn {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ===== BADGE ===== */
@@ -490,6 +521,14 @@
     .video-stack-item[data-index="1"] { transform: translateX(0px) scale(1.05) rotateY(0deg); }
     .video-stack-item[data-index="2"] { transform: translateX(80px) scale(0.85) rotateY(-15deg); }
     
+    .video-custom-fullscreen-btn {
+        right: 10px;
+        bottom: 46px;
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+    }
+    
     .carousel-track-horizontal img {
         width: 200px;
         height: 130px;
@@ -508,4 +547,12 @@
     .video-stack-item[data-index="0"] { transform: translateX(-60px) scale(0.8) rotateY(15deg); }
     .video-stack-item[data-index="1"] { transform: translateX(0px) scale(1) rotateY(0deg); }
     .video-stack-item[data-index="2"] { transform: translateX(60px) scale(0.8) rotateY(-15deg); }
+    
+    .video-custom-fullscreen-btn {
+        right: 8px;
+        bottom: 40px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
 }
