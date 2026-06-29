@@ -222,6 +222,10 @@
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258379.mp4" type="video/mp4" />
                         </video>
+                        <!-- Botón de pantalla completa personalizado -->
+                        <button class="video-custom-fullscreen-btn" data-video-index="0">
+                            <i class="fas fa-expand"></i>
+                        </button>
                     </div>
 
                     <!-- Video 2 (Centro - Principal) -->
@@ -230,6 +234,10 @@
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258382.mp4" type="video/mp4" />
                         </video>
+                        <!-- Botón de pantalla completa personalizado -->
+                        <button class="video-custom-fullscreen-btn" data-video-index="1">
+                            <i class="fas fa-expand"></i>
+                        </button>
                     </div>
 
                     <!-- Video 3 (Derecha) -->
@@ -238,6 +246,10 @@
                         <video controls poster="assets/lg.png">
                             <source src="assets/paralaweb/1000258383.mp4" type="video/mp4" />
                         </video>
+                        <!-- Botón de pantalla completa personalizado -->
+                        <button class="video-custom-fullscreen-btn" data-video-index="2">
+                            <i class="fas fa-expand"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -330,6 +342,48 @@
         </div>
     </div>
 
+    <!-- ===== AGRADECIMIENTO ===== -->
+    <section class="thanks-section" id="agradecimiento">
+        <div class="container">
+            <div class="thanks-content animate-hidden">
+                <div class="thanks-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                
+                <h2>¡Gracias por ser parte de esta experiencia!</h2>
+                
+                <p>
+                    A cada familia, amigo, voluntario y artista que hizo posible esta 
+                    <span class="thanks-highlight">Kermés Rockera 2026</span>. 
+                    Su energía, sonrisas y entusiasmo convirtieron esta tarde en un 
+                    recuerdo inolvidable.
+                </p>
+
+                <div class="thanks-message-box">
+                    <p>
+                        "La música une, la comida reconforta y la familia lo es todo. 
+                        Gracias por compartir con nosotros este pedacito de rock y tradición."
+                    </p>
+                    <div class="thanks-author">
+                        <i class="fas fa-users"></i>
+                        <span>Fundación Avanza Amor y Liderazgo Vida</span>
+                    </div>
+                </div>
+
+                <div class="thanks-social-grid">
+                    <a href="https://www.facebook.com/liderazgo.vida" target="_blank" class="btn-facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/liderazgo_vida_" target="_blank" class="btn-instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://wa.me/5215531114539" target="_blank" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ===== SOBRE EL EVENTO ===== -->
     <section class="section about-section" id="evento">
@@ -795,6 +849,7 @@
         const videoElements = document.querySelectorAll('.video-stack-item video');
         const prevBtn = document.getElementById('videoPrevBtn');
         const nextBtn = document.getElementById('videoNextBtn');
+        const fullscreenBtns = document.querySelectorAll('.video-custom-fullscreen-btn');
         
         let videoOrder = [0, 1, 2];
 
@@ -821,47 +876,57 @@
         prevBtn.addEventListener('click', prevVideo);
         updateCarousel();
 
-        // ===== LÓGICA DE REPRODUCCIÓN Y MODAL FULLSCREEN =====
+        // ===== LÓGICA DE PANTALLA COMPLETA PERSONALIZADA =====
         const fullscreenModal = document.getElementById('videoFullscreenModal');
         const fullscreenPlayer = document.getElementById('videoFullscreenPlayer');
         const fullscreenClose = document.getElementById('videoFullscreenClose');
 
-        // 1. Doble clic para abrir el modal vertical
-        videoElements.forEach(video => {
-            video.addEventListener('dblclick', () => {
-                // Pausar todos los videos en el carrusel
-                videoElements.forEach(v => {
-                    v.pause();
-                    v.currentTime = 0;
-                });
-
-                // Cargar el video en el modal
-                const source = video.querySelector('source');
-                if (source) {
-                    fullscreenPlayer.src = source.src;
-                } else {
-                    fullscreenPlayer.src = video.src;
-                }
-                
-                // Mostrar modal y reproducir
-                fullscreenModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                fullscreenPlayer.play();
+        // Función para abrir el modal con un video específico y su tiempo actual
+        function openCustomFullscreen(videoElement) {
+            // Pausar todos los videos en el carrusel
+            videoElements.forEach(v => {
+                v.pause();
+                v.currentTime = 0;
             });
 
-            // 2. Bloqueo de reproducción múltiple en el carrusel
-            video.addEventListener('play', function () {
-                videoElements.forEach(otherVideo => {
-                    if (otherVideo !== video) {
-                        otherVideo.pause();
-                        otherVideo.currentTime = 0;
-                    }
-                });
+            // Guardar el tiempo actual del video que estamos abriendo
+            const currentTime = videoElement.currentTime;
+
+            // Cargar el video en el modal
+            const source = videoElement.querySelector('source');
+            if (source) {
+                fullscreenPlayer.src = source.src;
+            } else {
+                fullscreenPlayer.src = videoElement.src;
+            }
+            
+            // Mostrar modal y reproducir desde el mismo segundo
+            fullscreenModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            fullscreenPlayer.currentTime = currentTime;
+            fullscreenPlayer.play();
+
+            // Guardar referencia para poder volver a pausarlo al cerrar
+            fullscreenPlayer._originalVideo = videoElement;
+        }
+
+        // Asignar evento click a los botones personalizados
+        fullscreenBtns.forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evitar que el clic llegue al video
+                const videoElement = videoElements[index];
+                openCustomFullscreen(videoElement);
             });
         });
 
-        // ===== FUNCIONES PARA CERRAR EL MODAL =====
+        // Función para cerrar el modal
         function closeVideoFullscreen() {
+            const originalVideo = fullscreenPlayer._originalVideo;
+            if (originalVideo) {
+                // Opcional: Pausar el original al cerrar (se mantiene en el tiempo que estaba)
+                originalVideo.pause(); 
+            }
+            
             fullscreenPlayer.pause();
             fullscreenPlayer.src = '';
             fullscreenModal.classList.remove('active');
@@ -880,6 +945,18 @@
             if (e.key === 'Escape' && fullscreenModal.classList.contains('active')) {
                 closeVideoFullscreen();
             }
+        });
+
+        // ===== LÓGICA DE BLOQUEO DE REPRODUCCIÓN MÚLTIPLE =====
+        videoElements.forEach(video => {
+            video.addEventListener('play', function () {
+                videoElements.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                        otherVideo.currentTime = 0;
+                    }
+                });
+            });
         });
 
         // ===== LIGHTBOX =====

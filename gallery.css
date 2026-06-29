@@ -129,12 +129,13 @@
     filter: none !important;
 }
 
-/* REPRODUCTOR DE VIDEO ESTILIZADO (Sin borrosos) */
+/* =========================================================
+   REPRODUCTOR DE VIDEO ESTILIZADO
+   ========================================================= */
 .video-stack-item video::-webkit-media-controls-panel {
-    background: rgba(0, 0, 0, 0.6) !important;
-    border-radius: 12px 12px 20px 20px !important;
-    padding: 4px 8px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent) !important;
+    border-radius: 0 0 20px 20px !important;
+    padding: 8px 12px !important;
 }
 
 .video-stack-item video::-webkit-media-controls-play-button {
@@ -158,13 +159,53 @@
 }
 
 .video-stack-item video::-webkit-media-controls-volume-slider,
-.video-stack-item video::-webkit-media-controls-mute-button,
-.video-stack-item video::-webkit-media-controls-fullscreen-button {
+.video-stack-item video::-webkit-media-controls-mute-button {
     filter: brightness(0) invert(1);
 }
 
+/* OCULTAR EL BOTÓN DE PANTALLA COMPLETA NATIVO */
 .video-stack-item video::-webkit-media-controls-fullscreen-button {
     display: none !important;
+}
+
+.video-stack-item video::-webkit-media-controls-download-button {
+    display: none !important;
+}
+
+.video-stack-item video::-webkit-media-controls-rewind-button,
+.video-stack-item video::-webkit-media-controls-return-to-real-screen-button {
+    display: none !important;
+}
+
+/* =========================================================
+   BOTÓN DE PANTALLA COMPLETA PERSONALIZADO
+   ========================================================= */
+.video-custom-fullscreen-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 50px; /* Colocado justo antes de los 3 puntos */
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.video-custom-fullscreen-btn:hover {
+    color: #c4b5fd;
+    transform: scale(1.15);
+}
+
+.video-custom-fullscreen-btn i {
+    filter: drop-shadow(0 1px 6px rgba(0,0,0,0.9));
 }
 
 /* ===== BADGE ===== */
