@@ -45,7 +45,6 @@
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#galeria" class="nav-link">Galería</a></li>
-                <li><a href="#agradecimiento" class="nav-link">Gracias</a></li>
                 <li><a href="#evento" class="nav-link">Evento</a></li>
                 <li><a href="#comida" class="nav-link">Comida</a></li>
                 <li><a href="#juegos" class="nav-link">Juegos</a></li>
@@ -131,7 +130,7 @@
                     </div>
                 </div>
                 
-               
+              
             </div>
             
             <div class="hero-actions">
@@ -196,14 +195,22 @@
         </div>
     </section>
 
-    <!-- ===== GALERÍA COMPLETA (Videos 3D + Carrusel) ===== -->
+    <!-- ===== GALERÍA COMPLETA ===== -->
     <section class="gallery-section" id="galeria">
         <div class="container" style="max-width: 100%; padding: 0;">
-            <div class="gallery-header">
-                <span class="section-tag"><i class="fas fa-star"></i> Recuerdos</span>
-                <h2>Revive algunos de los mejores momentos</h2>
-                <p>Una mirada a la magia de la Kermés Rockera 2026</p>
+            
+            <!-- ========================================== -->
+            <!-- 0. PORTADA KERMÉS 2026                     -->
+            <!-- ========================================== -->
+            <div class="gallery-cover-wrapper">
+                <img src="assets/portada.jpg" alt="Kermés Rockera 2026" class="gallery-cover-image" />
+                <div class="gallery-cover-overlay">
+                    <h1 class="gallery-cover-title">KERMÉS 2026</h1>
+                    <span class="gallery-cover-subtitle">· Rock & Tradición ·</span>
+                </div>
             </div>
+
+           
 
             <!-- ========================================== -->
             <!-- 1. VIDEOS DESTACADOS (Carrusel 3D Stack)   -->
@@ -270,13 +277,15 @@
                     <!-- FILA 1: MOVIMIENTO HACIA LA IZQUIERDA -->
                     <div class="carousel-row left">
                         <div class="carousel-track-horizontal">
-                            <!-- Primer bloque de 5 imágenes -->
+                            <!-- Primer bloque de imágenes con portada -->
+                            <img src="assets/portada.jpg" alt="Portada Kermés 2026" loading="lazy" />
                             <img class="photo-portrait photo-top" src="assets/paralaweb/1000258370.jpg" alt="Foto 1" loading="lazy" />
                             <img src="assets/paralaweb/1000258371.jpg" alt="Foto 2" loading="lazy" />
                             <img class="photo-portrait photo-top" src="assets/paralaweb/1000258372.jpg" alt="Foto 3" loading="lazy" />
                             <img class="photo-portrait photo-top" src="assets/paralaweb/1000258373.jpg" alt="Foto 4" loading="lazy" />
                             <img src="assets/paralaweb/1000258374.jpg" alt="Foto 5" loading="lazy" />
                             <!-- Duplicado para efecto infinito -->
+                            <img src="assets/portada.jpg" alt="Portada Kermés 2026" loading="lazy" />
                             <img class="photo-portrait photo-top" src="assets/paralaweb/1000258370.jpg" alt="Foto 1" loading="lazy" />
                             <img src="assets/paralaweb/1000258371.jpg" alt="Foto 2" loading="lazy" />
                             <img class="photo-portrait photo-top" src="assets/paralaweb/1000258372.jpg" alt="Foto 3" loading="lazy" />
@@ -288,7 +297,7 @@
                     <!-- FILA 2: MOVIMIENTO HACIA LA DERECHA -->
                     <div class="carousel-row right">
                         <div class="carousel-track-horizontal">
-                            <!-- Primer bloque de 5 imágenes -->
+                            <!-- Primer bloque de imágenes -->
                             <img src="assets/paralaweb/1000258375.jpg" alt="Foto 6" loading="lazy" />
                             <img src="assets/paralaweb/1000258376.jpg" alt="Foto 7" loading="lazy" />
                             <img src="assets/paralaweb/1000258377.jpg" alt="Foto 8" loading="lazy" />
@@ -335,49 +344,6 @@
             <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
     </div>
-
-    <!-- ===== AGRADECIMIENTO ===== -->
-    <section class="thanks-section" id="agradecimiento">
-        <div class="container">
-            <div class="thanks-content animate-hidden">
-                <div class="thanks-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                
-                <h2>¡Gracias por ser parte de esta experiencia!</h2>
-                
-                <p>
-                    A cada familia, amigo, voluntario y artista que hizo posible esta 
-                    <span class="thanks-highlight">Kermés Rockera 2026</span>. 
-                    Su energía, sonrisas y entusiasmo convirtieron esta tarde en un 
-                    recuerdo inolvidable.
-                </p>
-
-                <div class="thanks-message-box">
-                    <p>
-                        "La música une, la comida reconforta y la familia lo es todo. 
-                        Gracias por compartir con nosotros este pedacito de rock y tradición."
-                    </p>
-                    <div class="thanks-author">
-                        <i class="fas fa-users"></i>
-                        <span>Fundación Avanza Amor y Liderazgo Vida</span>
-                    </div>
-                </div>
-
-                <div class="thanks-social-grid">
-                    <a href="https://www.facebook.com/liderazgo.vida" target="_blank" class="btn-facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="https://www.instagram.com/liderazgo_vida_" target="_blank" class="btn-instagram">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                    <a href="https://wa.me/5215531114539" target="_blank" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ===== SOBRE EL EVENTO ===== -->
     <section class="section about-section" id="evento">

@@ -1,10 +1,97 @@
+/* ===== PORTADA KERMÉS 2026 ===== */
+.gallery-cover-wrapper {
+    max-width: 920px;
+    margin: 0 auto 56px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(196, 181, 253, 0.22);
+    box-shadow: 
+        0 0 0 1px rgba(196, 181, 253, 0.22),
+        0 24px 80px rgba(0, 0, 0, 0.75),
+        0 0 42px rgba(139, 92, 246, 0.18);
+    transition: all var(--transition-smooth);
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.gallery-cover-wrapper:hover {
+    border-color: rgba(196, 181, 253, 0.5);
+    box-shadow: 
+        0 0 0 1px rgba(196, 181, 253, 0.35),
+        0 24px 80px rgba(0, 0, 0, 0.75),
+        0 0 42px rgba(139, 92, 246, 0.18);
+    transform: translateY(-4px);
+}
+
+.gallery-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    filter: brightness(0.45) saturate(1.05);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-cover-wrapper:hover .gallery-cover-image {
+    transform: scale(1.05);
+}
+
+.gallery-cover-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+}
+
+.gallery-cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 
+        0 5px 0 #6d28d9,
+        0 18px 40px rgba(0, 0, 0, 0.95);
+    margin-bottom: 8px;
+}
+
+.gallery-cover-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Responsive Portada */
+@media (max-width: 768px) {
+    .gallery-cover-wrapper {
+        border-radius: var(--radius-lg);
+        margin-bottom: 32px;
+    }
+    .gallery-cover-title {
+        font-size: clamp(2.8rem, 10vw, 4.5rem);
+    }
+}
+
 /* ===== GALERÍA PREMIUM (A PANTALLA COMPLETA) ===== */
 .gallery-section {
     width: 100%;
     background:
         radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.14), transparent 32%),
         linear-gradient(180deg, #07070b 0%, #0d0b12 52%, #07070b 100%);
-    padding: 96px 0 90px;
+    padding: 64px 0 90px;
     position: relative;
     overflow: hidden;
 }
@@ -63,6 +150,16 @@
     line-height: 1.7;
 }
 
+/* ===== GALLERY HEADER COMPACT ===== */
+.gallery-header.compact {
+    margin-bottom: 26px;
+}
+
+.gallery-header.compact h2,
+.gallery-header.compact p {
+    display: none;
+}
+
 /* ===== VIDEOS DESTACADOS (EFECTO 3D STACK) ===== */
 .gallery-videos-section {
     width: min(100%, 1120px);
@@ -71,16 +168,39 @@
     border-top: none;
 }
 
-.gallery-videos-section h3,
-.gallery-photos-section h3 {
-    text-align: center;
+.gallery-videos-section h3 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    color: #f5f3ff !important;
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
     margin-bottom: 28px;
-    color: #c4b5fd !important;
-    background: none !important;
-    -webkit-text-fill-color: initial !important;
+    text-align: center;
+}
+
+.gallery-videos-section h3::before,
+.gallery-videos-section h3::after {
+    content: "";
+    width: min(26vw, 220px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.7), transparent);
+}
+
+.gallery-photos-section h3 {
+    color: #f5f3ff !important;
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 900;
+    margin-bottom: 28px;
+    text-align: center;
 }
 
 /* Contenedor del carrusel 3D */
@@ -207,12 +327,11 @@
 
     font-size: 1rem;
     cursor: pointer;
-    pointer-events: none; /* Oculto por defecto */
+    pointer-events: none;
 
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
     transition: all 0.25s ease;
     
-    /* OCULTO POR DEFECTO (NUEVO COMPORTAMIENTO) */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
@@ -375,7 +494,7 @@
 .gallery-photos-section {
     width: 100%;
     margin: 0;
-    padding: 50px 0 0;
+    padding: 36px 0 0;
     border-top: 1px solid rgba(139, 92, 246, 0.18);
 }
 
@@ -492,6 +611,16 @@
 .lightbox-nav.prev { left: 24px; }
 .lightbox-nav.next { right: 24px; }
 
+/* ===== AJUSTE DE IMÁGENES VERTICALES ===== */
+.carousel-track-horizontal img.photo-portrait {
+    object-fit: cover;
+    object-position: top center;
+}
+
+.carousel-track-horizontal img.photo-top {
+    object-position: center 8%;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .video-stack-carousel { height: 420px; }
@@ -555,13 +684,4 @@
         height: 30px;
         font-size: 0.85rem;
     }
-}
-/* ===== AJUSTE DE IMÁGENES VERTICALES ===== */
-.carousel-track-horizontal img.photo-portrait {
-    object-fit: cover;
-    object-position: top center;
-}
-
-.carousel-track-horizontal img.photo-top {
-    object-position: center 8%; /* Ajusta el foco hacia la parte superior */
 }
