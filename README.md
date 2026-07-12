@@ -1,7 +1,7 @@
 # Kermés Rockera 2026
 a
 <p align="center">
-  <img src="assets/img.png" alt="Kermés Rockera 2026" width="900">
+  <img src="assets/img.png" alt="Kermés Rockeransa 2026" width="900">
   <img src="assets/granday.png" alt="Foto del gran dia" width="900">
   <img src="assets/eventoenvivo.png" alt="Foto del gran dia" width="900">
     <img src="assets/eventofinish.png" alt="Foto del gran dia" width="900">
