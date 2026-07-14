@@ -7,7 +7,7 @@ a
     <img src="assets/eventofinish.png" alt="Foto del gran dia" width="900">
 
 
-  
+  jajajaja
   
 </p>
 
