@@ -1,4 +1,4 @@
-# Kermés Rockera 2026
+# Kermés sRockera 2026
 a
 <p align="center">
   <img src="assets/img.png" alt="Kermés Rockeransa 2026" width="900">
