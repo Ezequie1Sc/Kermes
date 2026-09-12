@@ -51,7 +51,6 @@ El sitio proporciona información clara y atractiva sobre el evento, permitiendo
 
 ---
 
-##
 ## 🚀 Demo
 
 🌐 Sitio desplegado:
