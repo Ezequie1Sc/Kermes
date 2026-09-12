@@ -51,28 +51,7 @@ El sitio proporciona información clara y atractiva sobre el evento, permitiendo
 
 ---
 
-## 📂 Estructura del Proyecto
-
-```text
-kermes-rockera/
-│
-├── index.html
-├── README.md
-│
-├── assets/
-│   ├── screenshot.png
-│   ├── lg.png
-│   └── ...
-│
-├── css/
-│   └── styles.css
-│
-└── js/
-    └── script.js
-```
-
----
-
+##
 ## 🚀 Demo
 
 🌐 Sitio desplegado:
